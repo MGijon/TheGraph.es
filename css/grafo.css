@@ -1,0 +1,17 @@
+body.container{
+	background-color: red;
+	display: table-cell;
+	vertical-align: middle;
+	position: relative;
+}
+
+.canvas{
+	width: 90%;
+	height: 75%;
+	background-color: white !important;
+	position: absolute;
+	top: 10%;
+	right: 5%
+	bottom: ;
+	left: 5%;
+}

@@ -68,6 +68,17 @@ div.college-selection{
   	text-decoration: none;
   	display: inline-block;
   	font-size: 16px;
+    border-radius: 10px;
+  	border-color: white;
+  	transition-duration: 0.4s;
+}
+
+.back button a{
+	color: white;
+}
+
+.back button a:hover{
+	font-weight: bold;
 }
 
 /* FOOTER

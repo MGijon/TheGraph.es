@@ -24,14 +24,26 @@
 						<br>
 						<input type="password" placeholder="Repeat Password" name="password_2">
 						<br>
-						<label for="hombre" style="color:white;">Hombre </label>
+						<input type="number" placeholder="Age" min="18" name="age">
+						<br>
+						<label for="hombre" style="color:white;">Men</label>
 						<input type="radio" name="identidad_sexual" value="hombre" id="hombre"> <!-- el id debe coincidir con el valor del atributo 'for' -->
 						<br>
-						<label for="mujer" style="color:white;">Mujer</label>
+						<label for="mujer" style="color:white;">Women</label>
 						<input type="radio" name="identidad_sexual" value="mujer" id="mujer">
 						<br>
-						<label for="otro" style="color:white;">Otro</label>
+						<label for="otro" style="color:white;">Don't ask me this again!!</label>
 						<input type="radio" name="identidad_sexual" value="otro" id="otro">
+						<br>
+						<select name="sexual_tendency" id="sexual_tendency">
+							<option value="straigh" style="color:white;">straigh</option>
+							<option value="gay" style="color:white;">gay</option>
+							<option value="bisexual" style="color:white;">bisexual</option>
+							<option value="other" style="color:white;">other</option>
+						</select>
+						<br>
+						<label for="terminos" style="color:white;">Acept the conditions to join the graph</label>
+						<input type="checkbox" name="terminos" id="terminos" value="ok"> <!-- al aceptar pasará el término 'ok' -->
 						<br>
 						<input type="submit" name="sing in">
 					</form>

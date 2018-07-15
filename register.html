@@ -11,12 +11,13 @@
 
 	<div class="container">
 		<div>
-					<form action="php/recibe.php" method="">
+					<form action="php/recibe.php" method="post">
 						<!-- name: nombre de la variable en el php,
 						      action: nombre del archivo al que mandaremos los datos
 									method: los valores se pasarán por url si lo dejamos en blanco
+										tenemos dos opciones: post y get
 								-->
-						<input type="text" placeholder="Name:" name="nombre">
+						<input type="text" placeholder="User:" name="user">
 						<br>
 						<input type="email" placeholder="Mail:" name="mail">
 						<br>

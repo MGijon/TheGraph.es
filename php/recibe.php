@@ -14,5 +14,6 @@ $password = $_POST['password'];
 $password_2 = $_POST['password_2'];
 $age = $_POST['age'];
 
-// bla bla bla bla
+
 ?>
+

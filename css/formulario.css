@@ -9,4 +9,15 @@
 	display: block;
 	margin: auto;
 	position: relative;
+	left: 300px;
+	top: 300px;
+}
+
+.formulario labeL, input{
+	top: 30%;
+	left: 40%;
+}
+
+.condiciones{
+	background-color: grey;
 }

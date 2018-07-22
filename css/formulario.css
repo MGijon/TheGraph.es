@@ -9,15 +9,21 @@
 	display: block;
 	margin: auto;
 	position: relative;
-	left: 300px;
-	top: 300px;
+	left: ;
+	top: 30%;
 }
 
-.formulario labeL, input{
+labeL, input, select{
+	position:relative;
 	top: 30%;
 	left: 40%;
 }
 
 .condiciones{
+	width:100px;
+	height:100px;
+	overflow: auto;  /*overflow-y: scroll; overflow-x: hidden; */
+	position: relative;
+	margin: auto%;
 	background-color: grey;
 }

@@ -1,4 +1,9 @@
-var myCircle = canvas.create({
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContent("2d");
+ctx.fillStyle = "#db5c24";
+ctx.fillRect(0, 0, 500, 500);
+
+/*var myCircle = canvas.create({
                 id:         'circles-1',
                 radius:     60,
                 value:      43,
@@ -36,3 +41,4 @@ var myCircle = canvas.create({
                 wrpClass:   'circles-wrp',
                 textClass:  'circles-text'
             });
+*/

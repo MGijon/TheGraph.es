@@ -12,7 +12,7 @@ $pass = $_POST['password'];
 $link = mysql_connect('mysql_host', 'mysql_user', 'mysql_password') or die('no se puede conectar: ' . mysql_error());
 echo 'Connected successfully';
 mysql_select_db('my_database') or die('No se pudo seleccionar la base de datos');
-
+/*
 // realizar la consulta de la base de datos
 $query = 'SELECT * FROM my_table';
 $result = mysql_query($query) or die('Consulta fallida: ' .mysql_error());
@@ -30,7 +30,7 @@ echo "</table>\n";
 
 // liberar resultados
 mysql_free_result($result);
-
+*/
 // cerrar la conexión
 mysql_close($link);
  ?>

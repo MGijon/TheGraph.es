@@ -4,6 +4,7 @@
     <!-- Insertamos el archivo CSS compilado y comprimido -->
     <link rel = "stylesheet" href="css/bootstrap.min.css">
     <link rel = "stylesheet" href = "css/main.css">
+    <link rel = "stylesheet" href = "css/formulario.css">
     <link rel="stylesheet" type="text/css" href="css/animate.css">
     <!-- Theme opcional -->
     <link rel = "stylesheet" href="css/bootstrap-theme.min.css">
@@ -14,10 +15,22 @@
         <h3 class = "title">THE GRAPH</h3>
       </header>
     </div>
-     <div class = "password-place">
-        <!-- aquí deberemos insertar el campo para la contraseña -->
-      <!--  <input type="password" name="contraseña" id="password"> -->
-    </div>
+    <div class="container formulario">
+  		<div>
+  					<form action="php/validation.php" method="post">
+  						<!-- name: nombre de la variable en el php,
+  						      action: nombre del archivo al que mandaremos los datos
+  									method: los valores se pasarán por url si lo dejamos en blanco
+  										tenemos dos opciones: post y get
+  								-->
+  						<input type="text" placeholder="User:" name="user">
+  						<br>
+  						<input type="password" placeholder="Password" name="password">
+  						<br>
+  						<input type="submit" name="sing in">
+  					</form>
+  	    </div>
+  	</div>
     <div class="container back">
   		<button type="button"><a href="index.html">Back</a></button>
   	</div>

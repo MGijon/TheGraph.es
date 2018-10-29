@@ -1,3 +1,6 @@
+/* GENERAL 
+   ======= */
+
 *{
   margin: 0;
   padding: 0;
@@ -8,21 +11,117 @@ head{
 body{
 
 }
+button{
+
+  &:active{
+    text-decoration: none !important;
+  }
+}
+a{
+  color: black;
+
+  &:active{
+    text-decoration: none;
+  }
+
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+
   .page-header{
     /* cabecera de la página web, dentro del body */
   }
-  .seccion-1{
 
-  }
-  	.container-foto{
+/* INTRODUCTION
+   ============ */
 
-  	}
-  	.container-datos_contacto{
-  		
-  	}
+.seccion-1{
+
+}
+.container-foto{
+
+}
+.short-bio{
+
+}
+
+/* CURRICULUM VITAE 
+   ================ */
+
   .seccion-2{
+    /* CV */
+    padding: 75px;
+
+    @media (max-width: 300px){
+      width: 100%;
+    }
 
   }
+
+/* DIVULGATIO
+   ========== */
+
+  .section-3{
+    /* Mathematical-stuff */
+
+  }
+    .divulgacion{
+      padding: 75px;
+
+      @media (max-width: 300px){
+        width: 100%;
+      }
+    }
+
+/* CONTACT 
+   ======= */
+
+.contact-info .fa {
+  padding-right: 5px;
+}
+
+#contact .form-control {
+  border: none;
+  border-bottom: 2px solid #f0f0f0;
+  border-radius: 0px;
+  box-shadow: none;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  -webkit-transition: all ease-in-out 0.4s;
+  transition: all ease-in-out 0.4s;
+}
+
+#contact .form-control:focus {
+  border-bottom-color: #999999;
+}
+
+#contact input {
+  height: 55px;
+}
+
+#contact button#submit {
+  background: #2b2b2b;
+  border: none;
+  border-radius: 50px;
+  color: #ffffff;
+  height: 50px;
+  margin-top: 24px;
+}
+
+#contact button#submit:hover {
+  background: #7682cc;
+  color: #ffffff;
+}
+
+.send-message-button{
+  background-color: red !important;  /* sin el important no va ni a tiros */
+}
+
+/* FOOTER 
+   ====== */
   .footer{
 
   }

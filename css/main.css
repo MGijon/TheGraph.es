@@ -13,26 +13,22 @@ body{
 }
 button{
 
-  &:active{
-    text-decoration: none !important;
-  }
+}
+button:hover, 
+button:active{
+
 }
 a{
-  color: black;
-
-  &:active{
-    text-decoration: none;
-  }
-
-  &:hover{
-    text-decoration: none;
-  }
+  text-decoration: none !important;
+}
+a:hover, 
+a:active{
+  text-decoration: none !important;
 }
 
-
-  .page-header{
-    /* cabecera de la página web, dentro del body */
-  }
+.page-header{
+  /* cabecera de la página web, dentro del body */
+}
 
 /* INTRODUCTION
    ============ */
@@ -41,7 +37,6 @@ a{
 
 }
 .container-foto{
-
 }
 .short-bio{
 
@@ -50,30 +45,31 @@ a{
 /* CURRICULUM VITAE 
    ================ */
 
-  .seccion-2{
-    /* CV */
-    padding: 75px;
+.seccion-2{
+  /* CV */
+  padding: 75px;
+}
 
-    @media (max-width: 300px){
-      width: 100%;
-    }
-
+@media (max-width: 300px){
+  .section-2{
+    width: 100%;
   }
+}
 
 /* DIVULGATIO
    ========== */
 
-  .section-3{
-    /* Mathematical-stuff */
+.section-3{
+  /* Mathematical-stuff */
+}
+.divulgacion{
+  padding: 75px;
+}
 
-  }
-    .divulgacion{
-      padding: 75px;
+@media (max-width: 300px){
+  .divulgacion{width: 100%;}
+}
 
-      @media (max-width: 300px){
-        width: 100%;
-      }
-    }
 
 /* CONTACT 
    ======= */
@@ -103,7 +99,8 @@ a{
 }
 
 #contact button#submit {
-  background: #2b2b2b;
+ /* background: #2b2b2b; */
+  background-color: red;
   border: none;
   border-radius: 50px;
   color: #ffffff;
@@ -112,12 +109,10 @@ a{
 }
 
 #contact button#submit:hover {
-  background: #7682cc;
+ /* background: #7682cc;
   color: #ffffff;
-}
-
-.send-message-button{
-  background-color: red !important;  /* sin el important no va ni a tiros */
+ */ 
+  background-color: yellow;
 }
 
 /* FOOTER 

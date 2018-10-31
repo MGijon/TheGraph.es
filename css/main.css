@@ -116,6 +116,10 @@ a:active{
 
 /* FOOTER 
    ====== */
-  .footer{
+.footer{
+  padding: 75px;
+}
 
-  }
+@media (max-width: 300px){
+  .footer{width: 100%;}
+}

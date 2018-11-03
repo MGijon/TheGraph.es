@@ -46,8 +46,11 @@ header{
 }
 .container-foto{
 }
+.foto{
+  max-width: 300px;
+}
 .short-bio{
-
+  right: 0px;
 }
 
 /* CURRICULUM VITAE 
@@ -66,6 +69,10 @@ header{
 
 .accordion{
   background-color: grey !important;
+}
+
+.titulo{
+  color: black;
 }
 
 /* DIVULGATIO

@@ -21,15 +21,10 @@
     <div class="seccion-1">
       <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-3">
-          <div class="container-foto">
-            <!-- aquí irá la foto del currículum -->
-            <img src="assets/Foto.jpg">
-          </div>
-        <div class="col-md-7">
-          <div class="short-bio">
+        <div class="col-md-3 container-foto">
+            <img src="assets/Foto.jpg" class="foto">
+        <div class="col-md-7 short-bio">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-          </div>
         </div>
         <div class="col-md-1"></div>
       </div> <!-- end row -->
@@ -46,7 +41,7 @@
 
       <div class="seccion-2">
         <h4 class="text-center">Curriculum Vitae</h4>
-        
+        <div style="min-height: 40px;"></div>
 
         <div class="accordion" id="CV">
 
@@ -56,7 +51,7 @@
           <div class="card">
             <div class="card-header" id="headingOne">
               <h5 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn btn-link titulo" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                   Studies
                 </button>
               </h5>
@@ -83,7 +78,7 @@
           <div class="card">
             <div class="card-header" id="headingTwo">
               <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <button class="btn btn-link collapsed titulo" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   Working experience
                 </button>
               </h5>
@@ -110,7 +105,7 @@
           <div class="card">
             <div class="card-header" id="headingFour">
               <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <button class="btn btn-link collapsed titulo" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                   Idiomas muhahhha
                 </button>
               </h5>
@@ -160,7 +155,7 @@
           <div class="card">
             <div class="card-header" id="headingFour">
               <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                <button class="btn btn-link collapsed titulo" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                   Programming skils
                 </button>
               </h5>
@@ -170,77 +165,77 @@
                 <ul class="list-group list-group-flush">
                  
                   <li class="list-group-item">
-                    <h3> Python </h3>
+                    <h5> Python </h5>
                     <small>
                       La experiencia con los frameworks o paquetes deberá ir aquí, muhahhhahh
                     </small>
                   </li>
                  
                  <li class="list-group-item">
-                    <h3> R </h3>
+                    <h5> R </h5>
                     <small>
                       osadai
                     </small>
                   </li>
                  
                   <li class="list-group-item">
-                    <h3> C </h3>
+                    <h5> C </h5>
                     <small>
                       osadai
                     </small>
                   </li>
                  
                   <li class="list-group-item">
-                    <h3> C++ </h3>
+                    <h5> C++ </h5>
                     <small>
                       osadai
                     </small>
                   </li>
                 
                   <li class="list-group-item">
-                    <h3> Java </h3>
+                    <h5> Java </h5>
                     <small>
                       osadai
                     </small>                     
                   </li>
                   
                   <li class="list-group-item">
-                    <h3> SAS </h3>
+                    <h5> SAS </h5>
                     <small>
                       osadai
                     </small>                     
                   </li>
 
                   <li class="list-group-item">
-                    <h3> HTML, CSS and JavaScript </h3>
+                    <h5> HTML, CSS and JavaScript </h5>
                     <small>
                       Experience with bla bla bla bla
                     </small>                     
                   </li>
                   
                   <li class="list-group-item">
-                    <h3> Matlab </h3>
+                    <h5> Matlab </h5>
                     <small>
                       Octave as well
                     </small>
                   </li>
 
                   <li class="list-group-item">
-                    <h3> Experience with Windows, Mac OXs, GNU/Linux </h3>
+                    <h5> Experience with Windows, Mac OXs, GNU/Linux </h5>
                     <small>
                       Experience with bla bla bla bla
                     </small>                     
                   </li>
 
                   <li class="list-group-item">
-                    <h3> Git experience </h3>
+                    <h5> Git experience </h5>
                     <small>
                       Git, and Github and graphical tools like GitKraken
                     </small>                     
                   </li>
 
                    <li class="list-group-item">
-                    <h3> LaTeX </h3>
+                    <h5> LaTeX </h5>
                     <small>
                       
                     </small>                     
@@ -260,7 +255,7 @@
           <div class="card">
             <div class="card-header" id="headingThree">
               <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <button class="btn btn-link collapsed titulo" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                   Other interest
                 </button>
               </h5>
@@ -270,7 +265,7 @@
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">Cras justo odio</li>
                   <li class="list-group-item">
-                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
+                    <button type="button titulo" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
                       Hackathons
                     </button>
                   </li>

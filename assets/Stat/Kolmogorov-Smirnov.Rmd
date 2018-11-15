@@ -1,0 +1,32 @@
+---
+title: "Kolmogorov–Smirnov"
+author: "Manuel Gijón Agudo"
+date: "15/11/2018"
+output: 
+ pdf_document:
+    toc: yes
+    toc_depth: 2
+  html_document:
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+## Including Plots
+
+```{r generating-samples, echo=TRUE}
+N = 50000
+x <- rnorm(N)
+y <- rnorm(N, mean = 1.7, sd = 0.4)
+hist(x, col=rgb(0,0,1,1/4))
+hist(y, col=rgb(1,0,0,1/4), add=TRUE)
+```
+
+```{r, echo=TRUE}
+ks.test(x, y)
+```

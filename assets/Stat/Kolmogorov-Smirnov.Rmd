@@ -30,3 +30,9 @@ hist(y, col=rgb(1,0,0,1/4), add=TRUE)
 ```{r, echo=TRUE}
 ks.test(x, y)
 ```
+
+
+```{r, echo=TRUE}
+#ks.test(x, y, alternative = c("two.sided", "less", "greater"), exact = NULL)
+ks.test(x, y, alternative="two.sided", exact = NULL)
+```

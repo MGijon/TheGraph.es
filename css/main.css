@@ -25,8 +25,13 @@ a:active{
   text-decoration: none !important;
 }
 
+.btn-primary{
+  background-color: grey !important;
+}
+
 .page-header{
   /* cabecera de la página web, dentro del body */
+  background-color: red;
 }
 
 header{
@@ -79,6 +84,7 @@ header{
   text-decoration: none;
   color: red;
 }
+
 
 /* DIVULGATIO
    ========== */
@@ -139,7 +145,7 @@ header{
 
 #contact button#submit {
  /* background: #2b2b2b; */
-  background-color: red;
+  background-color: grey;
   border: none;
   border-radius: 50px;
   color: #ffffff;
@@ -147,11 +153,15 @@ header{
   margin-top: 24px;
 }
 
-#contact button#submit:hover {
+#contact button#submit:hover,
+#contact button#submit:active{
  /* background: #7682cc;
   color: #ffffff;
  */ 
-  background-color: yellow;
+  background-color: white;
+  border-color: black !important;
+  border-width: 3px;
+  color: black !important;
 }
 
 /* FOOTER 

@@ -19,24 +19,32 @@ button:active{
 }
 a{
   text-decoration: none !important;
+  color: #B40431;
 }
 a:hover, 
 a:active{
   text-decoration: none !important;
+  color: #B40431;
 }
 
 .btn-primary{
   background-color: grey !important;
+  border-color: black !important;
 }
 
 .page-header{
   /* cabecera de la página web, dentro del body */
-  background-color: red;
+  background-color: #B40431;
 }
 
 header{
   padding-top: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 40px; 
+  width: 100% !important;
+  color: white;
+}
+
+.container-header{
 }
 /* INTRODUCTION
    ============ */
@@ -82,10 +90,12 @@ header{
 .titulo:hover,
 .titulo:active{
   text-decoration: none;
-  color: red;
+  color: #B40431;
 }
 
-
+.progress-bar{
+  background-color: #B40431 !important;
+}
 /* DIVULGATIO
    ========== */
 

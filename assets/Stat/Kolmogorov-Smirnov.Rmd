@@ -14,12 +14,16 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(ggplot2)
+if(require(ggplot2) == FALSE){
+  install.packages("ggplot2")
+  library(ggplot2)
+}
 ```
 
 ## Including Plots
 
 ```{r generating-samples, echo=TRUE}
+set.seed(1234)
 N = 50000
 x <- rnorm(N)
 y <- rnorm(N, mean = 1.7, sd = 0.4)

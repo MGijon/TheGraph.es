@@ -20,7 +20,12 @@ if(require(ggplot2) == FALSE){
 }
 ```
 
-## Including Plots
+## Teoría
+
+  La prueba de Kolmogorov-Smirnov es un test estadístico no paramétrico que nos permite medir la bondad de ajuste entre dos muestras. Podríamos por ejemplo utilizarlo para medir cómo de bian se ajusta la distribución empírica de una muestra a la distribución teórica que sigue o debería seguir la variable que la ha generado.
+  
+  
+## Ejemplo
 
 ```{r generating-samples, echo=TRUE}
 set.seed(1234)

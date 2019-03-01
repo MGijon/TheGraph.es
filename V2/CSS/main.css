@@ -1,0 +1,56 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+button{
+    color: crimson;    
+}
+
+head{
+    
+}
+
+body{
+    
+}
+
+.header{
+    background-color: crimson;
+    color: ghostwhite;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+.language{
+    background-color: crimson;
+}
+
+.introduction{
+    
+}
+
+.latest-news{
+    
+}
+
+.curriculim{
+    
+}
+
+.divulgation{
+    
+}
+
+.contact{
+    
+}
+
+.footer{
+    background-color: crimson;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+

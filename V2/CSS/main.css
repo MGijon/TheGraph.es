@@ -15,6 +15,10 @@ body{
     
 }
 
+.separador{
+    min-height: 40px;
+}
+
 .header{
     background-color: crimson;
     color: ghostwhite;
@@ -44,7 +48,7 @@ body{
 }
 
 .divulgation{
-    position: relative;
+   
 }
 
 .contact{

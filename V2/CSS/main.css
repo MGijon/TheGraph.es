@@ -1,25 +1,21 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
 }
 
-button{
-    color: crimson;    
+button {
+    color: crimson;
 }
 
-head{
-    
-}
+head {}
 
-body{
-    
-}
+body {}
 
-.separador{
+.separador {
     min-height: 40px;
 }
 
-.header{
+.header {
     background-color: crimson;
     color: ghostwhite;
     font-weight: bold;
@@ -27,35 +23,46 @@ body{
     text-align: center;
 }
 
-.language{
+.language {
     background-color: crimson;
 }
 
-.introduction{
+.introduction {
     position: relative;
 }
 
-.photograh{
-    
-}
+.photograh {}
 
-.latest-news{
+.latest-news {
     position: relative;
 }
 
-.curriculim{
+.curriculim {
     position: relative;
 }
 
+/*
 .divulgation{
    
 }
+*/
 
-.contact{
+.publications {}
+
+.card {
+    margin: 0 auto;
+    /* Added */
+    float: none;
+    /* Added */
+    margin-bottom: 10px;
+    /* Added */
+}
+
+.contact {
     position: relative;
 }
 
-.footer{
+.footer {
     background-color: crimson;
     position: relative;
     bottom: 0px;
@@ -63,9 +70,9 @@ body{
     height: 7.5%;
 }
 
-.social-media{
+.social-media {
     width: 80%;
     position: relative;
     top: 0px;
-    
+
 }

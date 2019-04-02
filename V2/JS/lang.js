@@ -8,3 +8,6 @@ function changetoEnglish(){
 
 changetoEnglish()
 changetoSpanish()
+
+// https://www.w3schools.com/js/js_whereto.asp
+// https://www.w3schools.com/jsref/event_onclick.asp

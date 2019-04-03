@@ -1,8 +1,15 @@
+const introduction_text_english = "hello world"
+// Inicialmente estará en inglés, decalro como constantes todos los textos y me los guardo, luego creo las traducciones y las 
+// escribo como constantes aquí, el botón hará el cambio entre ambos -> solo necesitaré una función para cambiar de idioma!!
+
 function changetoSpanish() {
-  document.getElementById("spanish-button").style.color = "blue";
+    document.getElementById("spanish-button").onclick = function () {
+        texto_introduction = document.getElementById("introduction-text");
+        texto_introduction.innerHTML = introduction_text_english;
+    };
 }
-        
-function changetoEnglish(){
+
+function changetoEnglish() {
     document.getElementById("english-button").style.color = "green";
 }
 

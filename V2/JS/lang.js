@@ -2,6 +2,8 @@ const introduction_text= "hello world"
 // Inicialmente estará en inglés, decalro como constantes todos los textos y me los guardo, luego creo las traducciones y las 
 // escribo como constantes aquí, el botón hará el cambio entre ambos -> solo necesitaré una función para cambiar de idioma!!
 
+// Necesito saber como cargar las traduccinoes de algún archivo externo
+
 function language() {
     texto_introduction = document.getElementById("introduction-text");
     

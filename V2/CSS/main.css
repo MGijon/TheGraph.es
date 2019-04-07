@@ -30,6 +30,10 @@ body {}
     background-color: crimson;
 }
 
+.language .spanish-button{
+    margin-left: 40%;
+}
+
 .introduction {
     position: relative;
 }

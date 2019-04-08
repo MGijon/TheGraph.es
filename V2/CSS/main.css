@@ -11,6 +11,13 @@ head {}
 
 body {}
 
+a{
+    color: crimson !important;
+}
+
+a:hover{
+    font-weight: bold;
+}
 .separador {
     min-height: 40px;
 }

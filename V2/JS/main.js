@@ -1,3 +1,8 @@
+// $(this).action() elemento actual
+// $('body').action() seleccionamos el body
+// $(".test").action() seleccionamos el elemento con class="test"
+// $("#test").action() seleccionamos el elemento con id="test"
+
 $('body').scrollspy({
     target: '#navbar-example'
 })

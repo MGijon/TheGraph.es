@@ -4,15 +4,17 @@ const introduction_text= "hello world"
 
 // Necesito saber como cargar las traduccinoes de algún archivo externo
 
+introduction = document.getElementById("introduction-text");
+
 function language() {
-    texto_introduction = document.getElementById("introduction-text");
+    
     
     document.getElementById("spanish-button").onclick = function () {    
-        texto_introduction.innerHTML = introduction_text;
+        introduction.innerHTML = introduction_text;
     };
     
     document.getElementById("english-button").onclick = function() {
-        texto_introduction.innerHTML = "alright motherfucker!!"  
+        introduction.innerHTML = introduction;  
     };
 }
 

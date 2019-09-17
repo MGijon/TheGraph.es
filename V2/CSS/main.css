@@ -10,16 +10,7 @@ button {
 head {}
 
 body {}
-/*
-a{
-    color: crimson !important;
-}
 
-a:hover{
-    font-weight: bold;
-}
-
-*/
 .separador {
     min-height: 40px;
 }
@@ -79,17 +70,3 @@ a:hover{
     position: relative;
 }
 
-.footer {
-    background-color: crimson;
-    position: relative;
-    bottom: 0px;
-    width: 100%;
-    height: 7.5%;
-}
-
-.social-media {
-    width: 80%;
-    position: relative;
-    top: 0px;
-
-}

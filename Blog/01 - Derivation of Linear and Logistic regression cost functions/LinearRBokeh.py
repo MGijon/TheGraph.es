@@ -9,8 +9,9 @@ from bokeh.layouts import row, column, gridplot
 from bokeh.models.widgets import Tabs, Panel
 
 # LINEAR REGRESSION COST FUNCTION
+#https://ml-cheatsheet.readthedocs.io/en/latest/linear_regression.html
 
-# BOKEH 
+# BOKEH
 # Determine where the visualization will be rendered
 output_file('LinearRBokeh.html')  # Render to static HTML, or
 output_notebook()  # Render inline in a Jupyter Notebook
@@ -24,3 +25,6 @@ fig = figure()  # Instantiate a figure() object
 
 # Preview and save
 show(fig)  # See what I made, and save if I like it
+
+
+# https://realpython.com/python-data-visualization-bokeh/

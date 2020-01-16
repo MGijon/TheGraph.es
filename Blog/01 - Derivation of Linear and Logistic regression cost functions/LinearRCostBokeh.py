@@ -16,7 +16,7 @@ y = np.random.normal(size=10)
 
 # BOKEH
 # Determine where the visualization will be rendered
-output_file('visualizations/LinearRBokeh.html')  # Render to static HTML, or
+output_file('visualizations/LinearRCostBokeh.html')  # Render to static HTML, or
 output_notebook()  # Render inline in a Jupyter Notebook
 
 # Set up the figure(s)

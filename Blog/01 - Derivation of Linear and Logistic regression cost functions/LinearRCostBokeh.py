@@ -10,7 +10,7 @@ from bokeh.models.widgets import Tabs, Panel
 
 # LINEAR REGRESSION COST FUNCTION
 #https://ml-cheatsheet.readthedocs.io/en/latest/linear_regression.html
-x = np.random.normal(size=10)
+x = np.random.normal(size=10) # generamos datos al azar, no sé cuál es la idea aquí
 y = np.random.normal(size=10)
 
 

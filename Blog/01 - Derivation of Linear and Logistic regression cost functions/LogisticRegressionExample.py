@@ -1,1 +1,3 @@
-"""Example of Logistic Regression."""
+"""Example of Logistic Regression.
+    Just an example of Logistic Regression application.
+"""

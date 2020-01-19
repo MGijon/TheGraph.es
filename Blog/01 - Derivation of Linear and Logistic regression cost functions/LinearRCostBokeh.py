@@ -1,4 +1,6 @@
-"""Linear Regression Const function visualization."""
+"""Linear Regression Const function visualization.
+    Visualize the Linear Regression algorithm 'black box'.
+"""
 # Numpy
 import numpy as np
 # Bokeh libraries

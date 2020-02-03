@@ -31,6 +31,9 @@ petal_width_virginica = X[:, 3][100:150]
 ## EXPLORATORY_PART ##
 ## ================ ##
 
+## MATPLOTLIB
+## ==========
+
 plt.figure(figsize=(20,14))
 plt.scatter(x=sepal_length_setosa,
             y=sepal_width_setosa,
@@ -48,7 +51,7 @@ plt.title('Iris Linear Regression (Sepal)')
 plt.xlabel('Sepal length')
 plt.ylabel('Sepal width')
 plt.legend()
-plt.savefig('visualizations/SepalScatterplot.png')
+#plt.savefig('visualizations/SepalScatterplot.png')
 plt.show()
 
 plt.figure(figsize=(20,14))
@@ -68,7 +71,27 @@ plt.title('Iris Linear Regression (Petal)')
 plt.xlabel('Petal length')
 plt.ylabel('Petal width')
 plt.legend()
-plt.savefig('visualizations/PetalScatterplot.png')
+#plt.savefig('visualizations/PetalScatterplot.png')
 plt.show()
 
+## BOKEH
+## =====
+from bokeh.plotting import figure, show, output_file
+from bokeh.sampledata.iris import flowers
+
+colormap = {'setosa': 'red', 'versicolor': 'green', 'virginica': 'blue'}
+colors = [colormap[x] for x in flowers['species']]
+
+p = figure(title = "Iris Morphology")
+p.xaxis.axis_label = 'Petal Length'
+p.yaxis.axis_label = 'Petal Width'
+
+p.circle(flowers["petal_length"], flowers["petal_width"],
+         color=colors,
+         fill_alpha=0.2,
+         size=10)
+######### AÑADIR HOVER TOOLLLLLLL
+output_file("visualizations/PetalScatterplot.html") #, title="iris.py example")
+
+show(p)
 ## estaría super bien poder printar las tres rectas de regresion juntas por especie

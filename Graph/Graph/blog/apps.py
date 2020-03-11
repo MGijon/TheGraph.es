@@ -1,6 +1,6 @@
 """Blog apps."""
 
-# Django 
+# Django
 from django.apps import AppConfig
 
 class BlogConfig(AppConfig):

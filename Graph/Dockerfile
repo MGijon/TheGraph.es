@@ -6,3 +6,4 @@ ADD . /code/
 RUN pip install -r requirements.txt
 RUN python manage.py migrate && python manage.py makemigrations
 RUN . /code/
+

@@ -4,5 +4,5 @@ RUN mkdir /code
 WORKDIR /code
 ADD . /code/
 RUN pip install -r requirements.txt
-#RUN python manage.py migrate && python manage.py makemigrations
+RUN python Graph/manage.py migrate && python Graph/manage.py makemigrations
 RUN . /code/

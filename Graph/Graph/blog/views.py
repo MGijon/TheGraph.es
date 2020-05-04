@@ -8,11 +8,9 @@ from django.views import generic
 from .models import Post
 
 class PostList(generic.ListView):
-    """Post list view."""
     queryset = Post.objects.filter(status=1).order_by('-created_on')
-    template_name = 'index.html'
+    template_name = 'blog/feed.html'
 
 class PostDetail(generic.DetailView):
-    """Post detail view."""
     model = Post
     template_name = 'post_detail.html'

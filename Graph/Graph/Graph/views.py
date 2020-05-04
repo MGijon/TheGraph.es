@@ -10,8 +10,13 @@ from django.shortcuts import render
 def index(request):
     """
     """
-    print('entra')
-
     template_name = 'index.html'
+
+    return render(request, template_name)
+
+def about(request):
+    """
+    """
+    template_name = 'about.html'
 
     return render(request, template_name)

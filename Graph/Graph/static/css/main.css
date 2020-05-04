@@ -9,6 +9,9 @@
      · Soft blue 3: 6E8EEA
      · Medium blue 1: 445A99
 
+    - REFERENCES:
+      -----------
+     ·(1) https://htmlcolorcodes.com/es/
 
 */
 
@@ -19,7 +22,6 @@ html, body {
     width: 100%;
     font-family: 'Roboto', sans-serif;
 }
-
 
 /* en principiio no está en uso */
 #auth-container {
@@ -35,6 +37,10 @@ html, body {
 
 .nav-item-custom-css{
     /* custom style css for the nav-items. */
+    min-width: 40px;
+    border: 20px;
+    margin: auto;
+    padding: 20px;
 }
 /* no se está usando ahora, pero lo reutilizaré para cuando el blog esté en funcionamiento */
 .post-container {

@@ -7,7 +7,12 @@ from django.urls import path
 from blog import views
 
 urlpatterns = [
-    path(route = '',
+    # Blog feed
+    path(route = 'feed/',
 		 view = views.PostList.as_view(),
-		 name ='feed'),
+		 name = 'feed'),
+    # For post details
+    path(route = '<slug:slug>/',
+         view = views.PostDetail.as_view(),
+         name = 'post_detail'),
 ]

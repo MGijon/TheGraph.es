@@ -1,9 +1,9 @@
 # TheGraph.es
 
 ***
-Working on a new version of my blog, written entirely on Django and built using mostly Python.    
+Personal webpage information.
 ***
 
-**Graph**: website.
+**Graph**: future website.
 
-**Blog folder**: Data used in order to generate posts on the [blog](http://thegraph.es/blog/).
+**Current**: [current version](http://thegraph.es/).

@@ -1,7 +1,7 @@
 """Blog views."""
 
 # Django
-from django.shortcuts import render
+#from django.shortcuts import render
 from django.views import generic
 
 # Post models
@@ -14,5 +14,7 @@ class PostList(generic.ListView):
 
 class PostDetail(generic.DetailView):
     """Post detail view."""
+
+    print('ENTRA EN ESTA MIEDA ENORMEEEEE')
     model = Post
     template_name = 'blog/post_detail.html'

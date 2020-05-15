@@ -19,5 +19,9 @@ urlpatterns = [
     # Blog urls
     path(route = '',
          view = include(('blog.urls', 'blog')),
-         name = 'blog')
+         name = 'blog'),
+    # Projects urls
+    path(route='',
+         view = include(('projects.urls', 'projects')),
+         name='projects'),
 ]

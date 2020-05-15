@@ -1,7 +1,6 @@
 """Blog views."""
 
 # Django
-#from django.shortcuts import render
 from django.views import generic
 
 # Post models

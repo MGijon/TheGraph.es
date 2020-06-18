@@ -12,7 +12,7 @@ urlpatterns = [
 		 view = views.PostList.as_view(),
 		 name = 'feed'),
     # For post details
-    path(route = '<slug:slug>/',
+    path(route = 'blog/<slug:slug>/',
          view = views.PostDetail.as_view(),
          name = 'post_detail'),
 ]

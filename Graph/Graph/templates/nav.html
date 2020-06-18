@@ -1,4 +1,4 @@
-{% load static %}
+ {% load static %}
 
 <nav class="navbar navbar-expand-lg fized-top" id="main-navbar">
 
@@ -21,24 +21,14 @@
 					<button>
 						<a href="{% url "blog:feed" %}">
 							Blog
-						<a>
+						</a>
 					</button>
 				</li>
 
-				<!-- Visualizations links -->
-				<!-- Do not know if this will be remain in this project -->
-<!--				<li class="nav-item nav-item-custom-css">
-					<button>
-						<a href="#">
-							Visualizations Gallery
-						<a>
-					</button>
-				</li>
--->
 				<!-- Projects list -->
 				<li class="nav-item nav-item-custom-css">
 					<button>
-						<a href="{% url "projects:feed" %}">
+						<a href="{% url "projects:projects_feed" %}">
 							Projects
 						</a>
 					</button>

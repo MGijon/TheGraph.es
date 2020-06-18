@@ -13,7 +13,11 @@ class PostList(generic.ListView):
 
 class PostDetail(generic.DetailView):
     """Post detail view."""
-
-    print('ENTRA EN ESTA MIEDA ENORMEEEEE')
     model = Post
+    '''
+    try:
+        template_name = 'blog/post_detail.html'
+    except:
+        pass
+    '''
     template_name = 'blog/post_detail.html'

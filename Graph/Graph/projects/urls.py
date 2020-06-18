@@ -8,6 +8,6 @@ from projects import views
 urlpatterns = [
     # Projects feed
     path(route = 'projects/',
-		 view = views.ProjectsList.as_view(),
-		 name = 'feed'),
+		 view = views.ProjectsList.as_view(),  #views.temporal_function, #view = views.ProjectsList.as_view(),
+		 name = 'projects_feed'),
 ]

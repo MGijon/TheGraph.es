@@ -14,13 +14,21 @@
 
 <div class="container">
     <div class="row">
-			<div class="col-md-1">
+
+			<!-- Project Entries Column -->
+			<div class="col-md-8 mt-3 left">
+
+				{% for project in project_list %}
+
+				<div class="card mb-4">
+					<h2 class="card-title">{{ project.title }}</h2>
+					osdiandnoa
+				</div> <!-- end card -->
+
+				{% endfor %}
 			</div>
-			<div class="col-md-10">
-				Halleluya
-			</div>
-			<div class="col-md-1">
-			</div>
+
+
     </div>
 </div>
 

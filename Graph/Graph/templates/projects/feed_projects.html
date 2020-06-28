@@ -16,13 +16,29 @@
     <div class="row">
 
 			<!-- Project Entries Column -->
-			<div class="col-md-8 mt-3 left">
+			<div class="col-md-8 mt-3 center">
 
 				{% for project in project_list %}
 
 				<div class="card mb-4">
-					<h2 class="card-title">{{ project.title }}</h2>
-					osdiandnoa
+					<div class="card-body">
+						<h2 class="card-title"> {{ project.title }} </h2>
+
+
+						<p class="card-text text-muted h6"> {{ project.author }} </p>
+						<p class="card-text text-muted h4"> {{ project.collaborator_1 }} </p>
+						<p class="card-text text-muted h4"> {{ project.collaborator_2 }} </p>
+
+						<p class="card-text"> {{ project.abstract }} </p>
+
+						<p class="card-text" style="font-size:20px;"> {{ project.status }} </p>
+
+						<a href="{% url 'projects:project_detail' project.slug %}"
+						   class="btn btn-primary">
+							 Know more!!
+						</a>
+
+					</div> <!-- end card-body -->
 				</div> <!-- end card -->
 
 				{% endfor %}
@@ -31,10 +47,6 @@
 
     </div>
 </div>
-
-
-
-{% include "sidebar.html" %}
 
 </div>
 {% endblock %}

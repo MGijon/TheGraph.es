@@ -9,31 +9,77 @@
 <!DOCTYPE html>
 
 {% block container %}
+<div class="container">
+  <div class="row"">
+    <div class="col-md-8 card mb-4 mt-3 left top">
+
+    <h1> {{ project.title }} </h1>
+
+    <h6> <strong> Author: </strong> {{project.author }} </h6>
+    {% if project.collaborator_1 %}
+    <h6> <strong> Collaborator: </strong> {{ project.collaborator_1 }} </h6>
+    {% endif %}
+    {% if project.collaborator_2 %}
+    <h6> <strong> Collaborator: </strong> {{ project.collaborator_2 }} </h6>
+    {% endif %}
+
+    <h6> <strong> Description:</strong> </h6>
+    <p> {{ project.description }} </p>
+
+    <!-- Espacio para imágenes y demás -->
+
+    <h6> <strong> Key-Words: </strong>
+      {{ project.key_word_1 }}
+      {% if project.key_word_2 %}, {{ project.key_word_2 }} {% endif %}
+      {% if project.key_word_2 %}, {{ project.key_word_3 }} {% endif %}
+      {% if project.key_word_2 %}, {{ project.key_word_4 }} {% endif %}
+      {% if project.key_word_2 %}, {{ project.key_word_5 }} {% endif %}
+    </h6>
 
 
+{# <!--
+    {% if project.link_1 %}
+    <h6>
+      <strong> Links: </strong>
+      <ul>
+        <li> <a href="{{ project.link_1 }}"> {{ project.description_link_1 }} </a> </li>
+    </h6>
+    {% endif %}
+
+
+        {% if project.link_2 %}
+        <li> <a href="{{ project.link_2 }}"> {{ project.description_link_2 }} </a> </li>
+        {% endif %}
+
+        {% if project.link_3 }}
+        <li> <a href="{{ project.link_3 }}"> {{ project.description_link_3 }} </a> </li>
+        {% endif %}
+
+        {% if project.link_4 %}
+        <li> <a href="{{ project.link_4 }}"> {{ project.description_link_4 }} </a> </li>
+        {% endif %}
+
+        {% if project.link_5 %}
+        <li> <a href="{{ project.link_5 }}"> {{ project.description_link_5 }} </a> </li>
+        {% endif %}
+      </ul>
+
+-->
+#}
+
+
+
+    </div>
+  </div> <!-- end row -->
+</div> <!-- end container -->
 {% endblock %}
 
 
 
 
-{#
-<!--
-
-<div>
-
-  {% block content %}
-
-  <div class="container">
-    <div class="row">
-      MUHEHHAHAHAHHAHAHHA
-    </div>
-  </div>
-
-  {% endblock content %}
-
-</div>
 
 
 
--->
-#}
+
+<!--    {#
+#}-->

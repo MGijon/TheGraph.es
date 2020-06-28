@@ -6,8 +6,9 @@ from django.contrib.auth.models import User
 
 # TODO: adapt this in the future
 STATUS = (
-    (0, "Open"),
-    (1, "Closed")
+    (0, "Secret"),
+    (1, "Open"),
+    (2, "Closed"),
 )
 
 class Project(models.Model):
@@ -50,6 +51,11 @@ class Project(models.Model):
     key_word_3 = models.CharField(max_length=75, blank=True)
     key_word_4 = models.CharField(max_length=75, blank=True)
     key_word_5 = models.CharField(max_length=75, blank=True)
+    description_link_1 = models.CharField(max_length=150, blank=True)  # luego será necesario
+    description_link_2 = models.CharField(max_length=150, blank=True)
+    description_link_3 = models.CharField(max_length=150, blank=True)
+    description_link_4 = models.CharField(max_length=150, blank=True)
+    description_link_5 = models.CharField(max_length=150, blank=True)
     link_1 = models.CharField(max_length=150, blank=True)  # luego será necesario
     link_2 = models.CharField(max_length=150, blank=True)
     link_3 = models.CharField(max_length=150, blank=True)

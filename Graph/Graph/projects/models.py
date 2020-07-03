@@ -1,4 +1,4 @@
-"""Projects urls."""
+"""Projects models."""
 
 # Django
 from django.db import models
@@ -30,11 +30,17 @@ class Project(models.Model):
     :key_word_3: self-explanatory.
     :key_word_4: self-explanatory.
     :key_word_5: self-explanatory.
+    :description_link_1: text linked to the 'link_1' direction.
+    :description_link_2: text linked to the 'link_1' direction.
+    :description_link_3: text linked to the 'link_1' direction.
+    :description_link_4: text linked to the 'link_1' direction.
+    :description_link_5: text linked to the 'link_1' direction.
     :link_1: self-explanatory.
     :link_2: self-explanatory.
     :link_3: self-explanatory.
     :link_4: self-explanatory.
     :link_5: self-explanatory.
+    :miniature: image, a miniature for the project.     TODOOOOOO!!
     """
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -61,6 +67,24 @@ class Project(models.Model):
     link_3 = models.CharField(max_length=150, blank=True)
     link_4 = models.CharField(max_length=150, blank=True)
     link_5 = models.CharField(max_length=150, blank=True)
+
+    miniature = models.ImageField(
+        upload_to = 'projects/',
+        blank = True,
+        null = True,
+    )
+
+    image_1 = models.ImageField(
+        upload_to = 'projects/',
+        blank = True,
+        null = True,
+    )
+
+    image_2 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
+    image_3 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
+    image_4 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
+    image_5 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
+
 
 
     class Meta:

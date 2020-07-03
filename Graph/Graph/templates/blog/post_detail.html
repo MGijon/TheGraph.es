@@ -2,7 +2,7 @@
 
 {% block head_content %}
 
-	<title>The Graph</title>
+	<title>The Graph: {{ post.title }}</title>
 
 {% endblock %}
 
@@ -23,7 +23,7 @@
 	        <p class="card-text ">{{ object.content | safe }}</p>
 	      </div>
 	    </div>
-	    
+
 	  </div>
 	</div>
 

@@ -29,6 +29,13 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
+    image_1 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
+    image_2 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
+    image_3 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
+    image_4 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
+    image_5 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
+
+
     class Meta:
         """TODO: descriptoin of this."""
         ordering = ['-created_on']

@@ -20,27 +20,38 @@
 
 				{% for project in project_list %}
 
-				<div class="card mb-4">
-					<div class="card-body">
-						<h2 class="card-title"> {{ project.title }} </h2>
+					{% if project.status != 0 %}   <!-- does not show project that are nor ready -->
+						<div class="card mb-4">
+							<div class="card-body">
+								<h2 class="card-title"> {{ project.title }} </h2>
 
+								{% if project.miniature %}
+								<img class="mr-3 rounded-circle"
+										 height="35"
+									   src="{{ project.miniature.url }}"
+									   alt="{{ project.title }}"/>
+								{% endif %}
 
-						<p class="card-text text-muted h6"> {{ project.author }} </p>
-						<p class="card-text text-muted h4"> {{ project.collaborator_1 }} </p>
-						<p class="card-text text-muted h4"> {{ project.collaborator_2 }} </p>
+								<p class="card-text text-muted h6"> {{ project.author }} </p>
+								<p class="card-text text-muted h6"> {{ project.collaborator_1 }} </p>
+								<p class="card-text text-muted h6"> {{ project.collaborator_2 }} </p>
 
-						<p class="card-text"> {{ project.abstract }} </p>
+								<p class="card-text"> {{ project.abstract }} </p>
 
-						<p class="card-text" style="font-size:20px;"> {{ project.status }} </p>
+								<p class="card-text text-muted h6">
+									<strong>Status: </strong>
+									{% if project.status == 2 %} Closed {% endif %}
+									{% if project.status == 1 %} Opened {% endif %}
+								</p>
 
-						<a href="{% url 'projects:project_detail' project.slug %}"
-						   class="btn btn-primary">
-							 Know more!!
-						</a>
+								<a href="{% url 'projects:project_detail' project.slug %}"
+								   class="btn btn-primary">
+									 Know more!!
+								</a>
 
-					</div> <!-- end card-body -->
-				</div> <!-- end card -->
-
+							</div> <!-- end card-body -->
+						</div> <!-- end card -->
+					{% endif %}
 				{% endfor %}
 			</div>
 

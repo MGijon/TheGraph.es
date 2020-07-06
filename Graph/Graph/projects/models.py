@@ -40,23 +40,29 @@ class Project(models.Model):
     :link_3: self-explanatory.
     :link_4: self-explanatory.
     :link_5: self-explanatory.
-    :miniature: image, a miniature for the project.     TODOOOOOO!!
+    :miniature: image, a miniature for the project.   
     """
+    # Title and slug name (used in the url)
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
+    # Authors
     author = models.ForeignKey(User, on_delete = models.CASCADE)
     collaborator_1 = models.CharField(max_length=100, blank=True)
     collaborator_2 = models.CharField(max_length=100, blank=True)
+    # Abstract (fot the preview) and description (for the detail view)
     abstract = models.TextField()
+    description = models.TextField()
+    # Status and timestamps
     status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     closed_on = models.DateTimeField(blank=True)
-    description = models.TextField()
+    # Key words (for tagging propouses)
     key_word_1 = models.CharField(max_length=75)
     key_word_2 = models.CharField(max_length=75, blank=True)
     key_word_3 = models.CharField(max_length=75, blank=True)
     key_word_4 = models.CharField(max_length=75, blank=True)
     key_word_5 = models.CharField(max_length=75, blank=True)
+    # Links (to urls) and their descriptions (text linked)
     description_link_1 = models.CharField(max_length=150, blank=True)  # luego será necesario
     description_link_2 = models.CharField(max_length=150, blank=True)
     description_link_3 = models.CharField(max_length=150, blank=True)
@@ -67,19 +73,18 @@ class Project(models.Model):
     link_3 = models.CharField(max_length=150, blank=True)
     link_4 = models.CharField(max_length=150, blank=True)
     link_5 = models.CharField(max_length=150, blank=True)
-
+    # Miniature for the preview
     miniature = models.ImageField(
         upload_to = 'projects/',
         blank = True,
         null = True,
     )
-
+    # Images
     image_1 = models.ImageField(
         upload_to = 'projects/',
         blank = True,
         null = True,
     )
-
     image_2 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
     image_3 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
     image_4 = models.ImageField(upload_to = 'projects/', blank = True, null = True)

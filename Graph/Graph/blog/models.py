@@ -21,14 +21,19 @@ class Post(models.Model):
     :created_on: self-explanatory.
     :status: self-explanatory.
     """
+    # Title and slug name (used in the url)
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete = models.CASCADE,related_name='blog_posts')
-    updated_on = models.DateTimeField(auto_now= True)
+    # Authors
+    author = models.ForeignKey(User, on_delete = models.CASCADE, related_name='blog_posts')
+    #collaborator_1 = models.ForeignKey(User, default='Null', on_delete = models.CASCADE, blank=True)
+    # Contente
     content = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
+    # Status and timestamps
     status = models.IntegerField(choices=STATUS, default=0)
-
+    updated_on = models.DateTimeField(auto_now= True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    # Images
     image_1 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
     image_2 = models.ImageField(upload_to = 'projects/', blank = True, null = True)
     image_3 = models.ImageField(upload_to = 'projects/', blank = True, null = True)

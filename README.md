@@ -4,6 +4,7 @@
 Personal webpage information.
 ***
 
-**Graph**: future website.
+**Graph**: future website, done with Django.
 
-**Current**: [current version](http://thegraph.es/).
+**Simplest_version**: [current version](http://thegraph.es/).
+

@@ -11,9 +11,15 @@ class PostAdmin(admin.ModelAdmin):
     Content displayed about each Post in the admin site.
     """
 
-    list_display = ('title', 'slug', 'status','created_on')
-    list_filter = ('status',)
-    search_fields = ['title', 'content']
-    prepopulated_fields = {'slug': ('title',)}
+    list_display = ('post_title',
+                    'post_slug',
+                    'post_status',
+                    'post_created_on')
+
+    list_filter = ('post_status',)
+
+    search_fields = ['post_title', 'post_content']
+
+    prepopulated_fields = {'post_slug': ('post_title',)}
 
 admin.site.register(Post, PostAdmin)

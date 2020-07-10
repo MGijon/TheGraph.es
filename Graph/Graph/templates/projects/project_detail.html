@@ -13,32 +13,32 @@
   <div class="row"">
     <div class="col-md-8 card mb-4 mt-3 center top"> <!-- Reescribir este container -->
 
-    <h1> {{ project.title }} </h1>
+    <h1> {{ project.project_title }} </h1>
 
-    <h6> <strong> Author: </strong> {{project.author }} </h6>
-    {% if project.collaborator_1 %}
-    <h6> <strong> Collaborator: </strong> {{ project.collaborator_1 }} </h6>
+    <h6> <strong> Author: </strong> {{project.project_author }} </h6>
+    {% if project.project_collaborator_1 %}
+    <h6> <strong> Collaborator: </strong> {{ project.project_collaborator_1 }} </h6>
     {% endif %}
-    {% if project.collaborator_2 %}
-    <h6> <strong> Collaborator: </strong> {{ project.collaborator_2 }} </h6>
+    {% if project.project_collaborator_2 %}
+    <h6> <strong> Collaborator: </strong> {{ project.project_collaborator_2 }} </h6>
     {% endif %}
 
     <h6> <strong> Description:</strong> </h6>
-    <p> {{ project.description }} </p>
+    <p> {{ project.project_description }} </p>
 
     <!-- Espacio para imágenes y demás, relativas a la descipción. -->
 
     <h6> <strong> Key-Words: </strong>
-      {{ project.key_word_1 }}
-      {% if project.key_word_2 %}, {{ project.key_word_2 }} {% endif %}
-      {% if project.key_word_2 %}, {{ project.key_word_3 }} {% endif %}
-      {% if project.key_word_2 %}, {{ project.key_word_4 }} {% endif %}
-      {% if project.key_word_2 %}, {{ project.key_word_5 }} {% endif %}
+      {{ project.project_key_word_1 }}
+      {% if project.project_key_word_2 %}, {{ project.project_key_word_2 }} {% endif %}
+      {% if project.project_key_word_2 %}, {{ project.project_key_word_3 }} {% endif %}
+      {% if project.project_key_word_2 %}, {{ project.project_key_word_4 }} {% endif %}
+      {% if project.project_key_word_2 %}, {{ project.project_key_word_5 }} {% endif %}
     </h6>
 
     <!-- AHORA EMPIEZA EL PROYECTO, probablemente lo dividiré en otro u otros archivos -->
 
-    
+
 
 
     </div> <!-- end col-md-8 -->

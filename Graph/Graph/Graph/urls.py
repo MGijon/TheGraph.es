@@ -21,4 +21,8 @@ urlpatterns = [
     path(route='',
          view = include(('projects.urls', 'projects')),
          name='projects'),
+    # Users
+    path(route='',
+         view = include(('users.urls', 'users')),
+         name = 'users'),
 ]

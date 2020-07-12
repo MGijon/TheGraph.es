@@ -4,8 +4,8 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import loginRequiredMixin
-from django views.generic import DetailView, FormView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView, FormView, UpdateView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import views as auth_views
 
@@ -13,11 +13,14 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from users.models import Profile
 
+# Forms
+from users.forms import SignupForm #, ProfileForm
+
 class LoginView(auth_views.LoginView):
     """TODO:description"""
     template_name = 'user/login.html'
 
-class LogoutView(loginRequiredMixin, auth_views.LogoutView):
+class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     """TODO:description."""
     template_name = 'users/logged_out.html'
 

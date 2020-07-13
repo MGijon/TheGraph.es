@@ -8,7 +8,6 @@ class Profile(models.Model):
     """Profile extended:
     Proxy model that extends the base data with other information.
     """
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     website = models.URLField(max_length=200, blank=True)
@@ -24,5 +23,5 @@ class Profile(models.Model):
 
 
     def __str__(self):
-        """TODO: description."""
+        """Information displayed when asking for this class."""
         return self.user.username

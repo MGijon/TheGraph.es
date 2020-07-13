@@ -60,7 +60,6 @@ class ProfileAdmin(admin.ModelAdmin):
 			}),
 	)
 
-	#readonly_fields = ('created', 'modified',)
 
 class ProfileInLine(admin.StackedInline):
 	"""Profile in-line admin for users."""
@@ -84,3 +83,5 @@ class UserAdmin(BaseUserAdmin):
 # tenemos que desregistrar el que ya existía y registrar el nuevo
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin) # recibe el modelo y también la clase que vamos a utilizar
+##
+#admin.site.register(User, Profile)

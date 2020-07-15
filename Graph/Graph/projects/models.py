@@ -56,7 +56,7 @@ class Project(models.Model):
     :project_image_5: self-explanatory.
     """
     # Project id
-    #project_id = models.AutoField(primary_key = True)
+    project_id = models.AutoField(primary_key = True, default = 999999)
     # Title and slug name (used in the url)
     project_title = models.CharField(max_length=200, unique=True)
     project_slug = models.SlugField(max_length=200, unique=True)

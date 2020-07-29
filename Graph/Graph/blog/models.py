@@ -68,4 +68,4 @@ class Post(models.Model):
 
     def __str__(self):
         """Information to return about the Post model."""
-        return self.title
+        return self.post_title

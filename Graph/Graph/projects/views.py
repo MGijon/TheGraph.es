@@ -15,5 +15,4 @@ class ProjectsList(generic.ListView):
 class ProjectDetail(generic.DetailView):
     """Project detail view."""
     model = Project
-
     template_name = 'projects/project_detail.html'

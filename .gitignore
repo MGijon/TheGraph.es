@@ -6,3 +6,11 @@ OLD VERSIONS/
 cajon_de_sastre/
 
 Graph/Graph/Graph/secret_settings.py
+
+.DS_Store
+Graph/Graph/Graph/__pycache__/
+Graph/Graph/blog/__pycache__/
+Graph/Graph/blog/migrations/
+
+Graph/Graph/projects/__pycache__/
+Graph/Graph/users/__pycache__/

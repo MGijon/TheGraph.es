@@ -37,7 +37,7 @@ class Post(models.Model):
     :post_image_5: self-explanatory.
     """
     # Id
-    #post_id = models.AutoField(primary_key = True)
+    post_id = models.AutoField(primary_key = True, default=999999)
     # Title and slug name (used in the url)
     post_title = models.CharField(max_length=200, unique=True)
     post_slug = models.SlugField(max_length=200, unique=True)
@@ -68,4 +68,4 @@ class Post(models.Model):
 
     def __str__(self):
         """Information to return about the Post model."""
-        return self.title
+        return self.post_title

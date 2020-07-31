@@ -17,7 +17,7 @@ class Project(models.Model):
     :project_id: sefl-explanatory.
 
     :project_title: self-explanatory.
-    :project_slug: reference to the url of the project front-page.
+    :slug: reference to the url of the project front-page.
 
     :project_author: self-explanatory.
     :project_collaborator_1: self-explanatory.
@@ -59,7 +59,7 @@ class Project(models.Model):
     project_id = models.AutoField(primary_key = True, default = 999999)
     # Title and slug name (used in the url)
     project_title = models.CharField(max_length=200, unique=True)
-    project_slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
     # Authors
     author = models.ForeignKey(User, on_delete = models.CASCADE)
     project_collaborator_1 = models.CharField(max_length=100, blank=True)

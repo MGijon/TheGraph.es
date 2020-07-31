@@ -32,7 +32,10 @@
 									   alt="{{ project.project_title }}"/>
 								{% endif %}
 
-								<p class="card-text text-muted h6"> {{ project.project_author }} </p>
+								<p class="card-text text-muted h6">
+									{{ project.project_author }}
+								</p>
+
 								<p class="card-text text-muted h6"> {{ project.project_collaborator_1 }} </p>
 								<p class="card-text text-muted h6"> {{ project.project_collaborator_2 }} </p>
 
@@ -44,7 +47,7 @@
 									{% if project.project_status == 1 %} Opened {% endif %}
 								</p>
 
-								<a href="{% url 'projects:project_detail' project.project_slug %}"
+								<a href="{% url 'projects:project_detail' project.slug %}"
 								   class="btn btn-primary">
 									 Know more!!
 								</a>

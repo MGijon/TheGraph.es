@@ -12,7 +12,7 @@ class PostAdmin(admin.ModelAdmin):
     """
 
     list_display = ('post_title',
-                    'post_slug',
+                    'slug',
                     'post_status',
                     'post_created_on')
 
@@ -20,6 +20,6 @@ class PostAdmin(admin.ModelAdmin):
 
     search_fields = ['post_title', 'post_content']
 
-    prepopulated_fields = {'post_slug': ('post_title',)}
+    prepopulated_fields = {'slug': ('post_title',)}
 
 admin.site.register(Post, PostAdmin)

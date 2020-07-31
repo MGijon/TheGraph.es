@@ -1,18 +1,327 @@
 {% extends "base.html" %}
 
 {% block head_content %}
-
 	<title>The Graph</title>
-
 {% endblock %}
 
 <!DOCTYPE html>
 
 {% block container %}
 
-
 <div>
-ELIMINAR POR QUE NO LA ESTUY USANDO PARA NADA
-Por definir, probalblement la intro sea mi curriculum vitae
+
+	  <div class="container-fluid p-0">
+
+			<!-- INTRODUCTION -->
+	    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+	      <div class="w-100">
+
+	        <h1 class="mb-0">Manuel
+	          <span class="text-primary">Gijón Agudo</span>
+	        </h1>
+
+	        <div class="subheading mb-5">
+	          Data Scientist and Developer
+	          <a href="mailto:mgijon94@gmail.com">mgijon94@gmail.com</a>
+	        </div>
+
+	        <p class="lead mb-5">
+	          Mathematician by the Autonomous University of Madrid, and master's degree in
+	          Advanced Mathematics and Mathematical Engineering by the Polytechnic University of Catalonia.
+	        </p>
+	        <p class="lead mb-3">
+	          <strong>Passionate about technology</strong>
+	        </p>
+	        <p class="lead mb-3">
+	          <strong>Lifelong learner</strong>
+	        <p>
+
+	        <br>
+	        <div class="container">
+
+	          <div class="row text-center">
+
+	            <div class="col-md-3">
+	              <a href="www.linkedin.com/in/manuel-gijón-agudo-34210a8a" target="_blank">
+	                LinkedIn
+	              </a>
+	            </div>
+
+	            <div class="col-md-3">
+	              <a href="https://github.com/MGijon" target="_blank">
+	                Github
+	              </a>
+	            </div>
+
+	            <div class="col-md-3">
+	              <a href="https://www.instagram.com/mgijon94/" target="_blank">
+	                Instagram
+	              </a>
+	            </div>
+
+	            <div class="col-md-3">
+	              <a href="https://twitter.com/mgijon94" target="_blank">
+	                Twitter
+	              </a>
+	            </div>
+
+	            <div class="col-md-1"></div>
+	          </div>
+
+	        </div>
+
+
+
+	    </section> <!-- end section INTRODUCTION -->
+
+	    <hr class="m-0">
+
+	    <!-- EXPERIENCE -->
+	    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+	      <div class="w-100">
+	        <h2 class="mb-5">Experience</h2>
+
+	        <!-- Element 1 -->
+	        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+	          <div class="resume-content">
+	            <h3 class="mb-0">Machine Learning Engineer and Full Stack Developer</h3>
+	            <div class="subheading mb-3">I-MAS</div>
+	            <p>
+	              <ul>
+	                <li>Develop of products for internal use from scratch for data collecting, maintenance and cleaning.</li>
+	                <li>Implementation of Machine Learning and Deep Learning algorithms for classification and prediction.</li>
+	                <li>Dev/ops, maintenance and continuous integration of the created platforms.</li>
+	                <li><span class="text-primary">TECH STACK (Artificial Intelligence):</span> Python (Numpy, Pandas, Matplotlib, Seaborn and Bokeh for data visualization, Scikit-learn for Machine Learning models and TensorFlow
+	  and Keras for Deep Learning implementations).</li>
+	                <li><span class="text-primary">TECH STACK (Full Stack):</span>Django (Python framework for backend development), HTML5, CSS, JavaScript (vanilla
+	  and ThreeJS).</li>
+	                  <li><span class="text-primary">TECH STACK (Dev/Ops)</span>Docker and Jenkins.</li>
+	              </ul>
+	            </p>
+	          </div>
+	          <div class="resume-date text-md-right">
+	            <span class="text-primary">October - Present</span>
+	          </div>
+	        </div>
+
+	        <!-- Element 0 -->
+	        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+	          <div class="resume-content">
+	            <h3 class="mb-0">Project Manager</h3>
+	            <div class="subheading mb-3">CARNET Future Mobility Research Hub</div>
+	            <p>
+	              <ul>
+	                <li>Maintain the company’s main website.</li>
+	                <li>Create, upload and update web pages for different projects (Autonomous Driving Challenge
+	2018, Citython 2018, Symposium 2018).</li>
+	                <li>Layout and disseminate newsletters through the platform MailChimp.</li>
+	                <li>Participate in the organization and development of the event Citython 2018 (a Hackathon
+	focused on the development of products and services related to the concept ’Smart Cities’).</li>
+	                <li><span class="text-primary">TECH STACK:</span> HTML5, CSS, JavaScript.</li>
+	              </ul>
+	            </p>
+	          </div>
+	          <div class="resume-date text-md-right">
+	            <span class="text-primary">May 2018 - November 2018</span>
+	          </div>
+	        </div>
+
+
+	    </section> <!-- end section EXPERIENCE -->
+
+	    <hr class="m-0">
+
+	    <!-- SICENTIFIC_CONTRIBUTIONS -->
+	    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="papers">
+	      <div class="w-100">
+	        <h2 class="mb-5">Papers</h2>
+
+	        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+	          <div class="resume-content">
+	            <h3 class="mb-0">
+	              Analyzing Distances in Word Embeddings and Their Relation with Seme Analysis
+	            </h3>
+	            <div class="subheading mb-3">
+	              IOSPRESS, Artificial Intelligence Research and Development
+	            </div>
+	            <div class="subheading mb-3">
+	              <strong>Authors</strong>: Manuel Gijón Agudo, Armand Vilalta Arias (HPAI, BSC) and Dario Garcia-Gasulla (HPAI, BSC).
+	            </div>
+
+	            <p><strong>Abstract</strong>: Word embeddings have recently become a fundamental tool of
+	              Natural Language Processing, with application to tasks like machine
+	              translation or image annotation. The high-dimensional space defined
+	              by these embeddings is typically explored and exploited through
+	              distance-based operations. In this paper we work on the problem of
+	              finding words related between them in a text embedding. This relationship
+	              can be of different kind, we focus in semantic relations like synonymy
+	              and antonym. We explore the idea of using the distance between norms
+	              instead of, like other authors has done before, the vector that units
+	              them. We present different norms, some of them well known in the
+	              literature and others no so widely used and also we introduce a new
+	               one and its theoretical mathematical framework. We also give an
+	               explanation of why them work properly or not and compare their
+	               performance on the two most used embeddings, GloVe and Word2Vec.</p>
+
+	               <div class="subheading mb-3">
+	                 22 Congrés Internacional de l’Associació Catalana d’Intel·ligncia Artificial (Mallorca, Balearic Islands).
+	               </div>
+	            <a href="http://ebooks.iospress.nl/volumearticle/52866" target="_blank">
+	               Link to the paper.
+	            </a>
+	          </div>
+	          <div class="resume-date text-md-right">
+	            <span class="text-primary">October 2019</span>
+	          </div>
+	        </div>
+
+	      </div>
+
+	    </section> <!-- end section SCIENTIFIC_CONTRIBUTIONS -->
+
+	    <hr class="m-0">
+
+	    <!-- EDUCATION -->
+	    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
+	      <div class="w-100">
+	        <h2 class="mb-5">Education</h2>
+
+	      <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+	        <div class="resume-content">
+	          <h3 class="mb-0">Universitat Politècnica de Catalunya (UPC)</h3>
+	          <div class="subheading mb-3">Master's degree in Advanced Mathematics and Mathematical Engineering (MAMME)</div>
+	          <div></div>
+	          <p><strong>Relevant Coursework</strong>: Codes and Cryptography, Discrete and Algorithmic Geometry, Graph Theory, Estadística para la Gestión Empresarial (from MESIO, Máster universitario en Estadística e Investigación Operativa).</p>
+	        </div>
+	        <div class="resume-date text-md-right">
+	          <span class="text-primary">2012 - 2017</span>
+	        </div>
+	      </div>
+
+
+	        <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+	          <div class="resume-content">
+	            <h3 class="mb-0">Universidad Autónoma de Madrid (UAM)</h3>
+	            <div class="subheading mb-3">Bachelor in Mathematics</div>
+
+	          </div>
+	          <div class="resume-date text-md-right">
+	            <span class="text-primary">2012 - 2017</span>
+	          </div>
+	        </div>
+	        <p>
+	          <strong>2015-2016</strong>: Universitat Autònoma de Barcelona (UAB).</p>
+	        <p>
+	          <strong>2016-2017</strong>: Universitat Politècnica de Catalunya (UPC).</p>
+	      </div>
+
+
+	    </section> <!-- end section EDUCTION -->
+
+	    <hr class="m-0">
+
+	    <!-- COMPLEMENTARY_EDUCATION_SELECTED -->
+	    <section class="resume-section p-3 p-lg-5 d-flex" id="complementary_education">
+	      <div class="w-100">
+	        <h2 class="mb-5">Complementary education (selected)</h2>
+	        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+	          <div class="resume-content">
+
+							<h3 class="mb-0">TensorFlow in Practice Specialization (Coursera, by deeplearning.ai)</h3>
+							<div class="subheading mb-3">
+								<ul>
+									<li>Introduction to TensorFlow for Artificial Intelligence, Machine Learning and Deep Learning.</li>
+									<li>Convolutional Neural Networks in TensorFlow</li>
+									<li>Natural Language Processing in TensorFlow</li>
+									<li>Sequences, TIme Series and Prediction</li>
+								</ul>
+							</div>
+
+	            <h3 class="mb-0">Deep Learning Specialization (Coursera, by deeplearning.ai)</h3>
+	            <div class="subheading mb-3">
+	              <ul>
+	                <li>Neural Networks and Deep Learning.</li>
+	                <li>Improving Deep Neural Networks: Hyperparameter tuning Regularization and Optimization.</li>
+	                <li>Structuring Machine Learning Projects.</li>
+	                <li>Convolutional Neural Networks.</li>
+	                <li>Sequence Models.</li>
+	              </ul>
+	            </div>
+
+	            <h3 class="mb-0">Artificial Intelligence</h3>
+	            <div class="subheading mb-3">
+	              <ul>
+	                <li>Machine Learning. Stanford University, Coursera.</li>
+	                <li>Machine Learning Aplicado con Python. Platzi.</li>
+	              </ul>
+	            </div>
+
+	            <h3 class="mb-0">Software Development</h3>
+	            <div class="subheading mb-3">
+	              <ul>
+	                <li>Curso Básico de Jenkins. Platzi.</li>
+	                <li>Fundamentos de Docker. Platzi.</li>
+	                <li>Curso de Docker. Platzi.</li>
+	                <li>Fundamentos de JavaScript. Platzi.</li>
+	                <li>Introducción a Terminal y Línea de Comandos. Platzi.</li>
+	            </div>
+
+	          </div>
+	        </div>
+	      </div>
+	    </section> <!-- end secton COMPLEMENTARY_EDUCATION_SELECTED -->
+
+	    <hr class="m-0">
+
+	    <!-- SKILLS -->
+	    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="skills">
+
+	      <div class="w-100">
+	        <h2 class="mb-5">Skills</h2>
+
+	        <div class="subheading mb-3">Programming Languages &amp; Tools</div>
+	        <ul class="fa-ul mb-0">
+	          <li>
+	            <i class="fa-li fa fa-code"></i>
+	            Data Science: Python (Numpy, Pandas, Sklearn, Scikit, Pyplot, Seaborn, Bokeh, ...) and R. During
+	            my accademic years I studied SAS too.
+	          </li>
+
+	          <li>
+	            <i class="fa-li fa fa-code"></i>
+	            Web development: I have experience with Django for the as framework for the backend and HTML5, CSS and JavaScipt for the frontend.
+	          </li>
+
+	          <li>
+	            <i class="fa-li	fa fa-code"></i>
+	            I have experience using Docker (in fact, I've been using in all my projects since I discovered it) and Jenkins for continuous integration.
+	          </li>
+
+	          <li>
+	            <i class="fa-li	fa fa-code"></i>
+	            In the past, I used C, C++, Java and Matlab.
+	          </li>
+
+	          <li>
+	            <i class="fa-li	fa fa-code"></i>
+	            Experience with Git systems (mostly with Github) and currently in love with Unix systems.
+	          </li>
+	        </ul>
+
+	      </div>
+
+			</section> <!-- end section SKILLS -->
+
+			<hr class="m-0">
+
+			<!-- COMPLEMENTARY_EDUCATION_COMPLETE -->
+			<section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="complementary_education_complete">
+				<div class="w-100">
+					<h2 class="mb-5">Complementary Education</h2>
+					{% include "timeline.html" %}
+				</div>
+			</section> <!-- end COMPLEMENTARY_EDUCATION_COMPLETE -->
+
 </div>
+
 {% endblock %}

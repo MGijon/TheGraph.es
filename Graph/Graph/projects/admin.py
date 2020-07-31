@@ -12,13 +12,13 @@ class ProjectAdmin(admin.ModelAdmin):
     """
 
     list_display = ('project_title',
-                    'project_slug',
+                    'slug',
                     'project_status',
                     'project_created_on', )
     list_filter = ('project_status',)
     search_fields = ['project_title',]    # TODO: end this, just wanna know that works
     prepopulated_fields = {
-        'project_slug': ('project_title',),
+        'slug': ('project_title',),
     }
 
 admin.site.register(Project, ProjectAdmin)

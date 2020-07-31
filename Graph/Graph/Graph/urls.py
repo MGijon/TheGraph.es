@@ -10,19 +10,21 @@ from .views import * # let's see if that works
 urlpatterns = [
     path('admin/', admin.site.urls),
     # General
-    path(route = '',
-         view = index,
-         name = 'index'),
+    path(route='',
+         view=index,
+         name='index'),
+    # About
+    path(route='about', view=about, name='about'),
     # Blog urls
-    path(route = '',
-         view = include(('blog.urls', 'blog')),
-         name = 'blog'),
+    path(route='',
+         view=include(('blog.urls', 'blog')),
+         name='blog'),
     # Projects urls
     path(route='',
-         view = include(('projects.urls', 'projects')),
+         view=include(('projects.urls', 'projects')),
          name='projects'),
     # Users
     path(route='',
-         view = include(('users.urls', 'users')),
-         name = 'users'),
+         view=include(('users.urls', 'users')),
+         name='users'),
 ]

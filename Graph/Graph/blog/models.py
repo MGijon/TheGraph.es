@@ -16,7 +16,7 @@ class Post(models.Model):
     :post_id: self-explanatory.
 
     :post_title: self-explanatory.
-    :post_slug: reference to the url of the post.
+    :slug: reference to the url of the post.
 
     :post_author: self-explanatory.
 
@@ -40,7 +40,7 @@ class Post(models.Model):
     post_id = models.AutoField(primary_key = True, default=999999)
     # Title and slug name (used in the url)
     post_title = models.CharField(max_length=200, unique=True)
-    post_slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
     # Authors
     post_author = models.ForeignKey(User, on_delete = models.CASCADE, related_name='blog_posts')
     #collaborator_1 = models.ForeignKey(User, default='Null', on_delete = models.CASCADE, blank=True)

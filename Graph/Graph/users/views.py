@@ -18,7 +18,7 @@ from users.forms import SignupForm #, ProfileForm
 
 class LoginView(auth_views.LoginView):
     """TODO:description"""
-    template_name = 'user/login.html'
+    template_name = 'users/login.html'
 
 class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     """TODO:description."""
@@ -35,3 +35,39 @@ class SignupView(FormView):
         """TODO: description."""
         form.save()
         return super().form_valid(form)
+
+#### NEW THIGS TO TEST ####
+class UpdateProfileView(LoginRequiredMixin, UpdateView):
+    """Update profile view."""
+
+    template_name = 'users/update_profile.html'
+    model = Profile
+    fields = ['profile_biography',]
+
+    def get_object(self):
+        """Return user's profile."""
+        return self.request.user.profile
+
+    def get_success_url(self):
+        """Return to user's profile."""
+        username = self.object.user.username
+        return reverse('users:detail', kwargs={'username', username})
+
+class UserDetailView(LoginRequiredMixin, DetailView):
+    """User detail view."""
+
+    template_name='users/detail.html'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+    queryset = User.objects.all()
+
+    context_object_name = 'user'
+
+
+    ######## REPARAR ESTO; LOS Términos son literales de otro proyecto #########
+    def get_contect_data(self, **kwargs):
+        """Add user's posts to context."""
+        contect = super().get_context_data(**kwargs)
+        user=self.get_object()
+        context['posts'] = Posts.objects.filter(user=user).order_by('-created')
+        return context

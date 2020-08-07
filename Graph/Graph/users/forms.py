@@ -10,7 +10,7 @@ from users.models import Profile
 class SignupForm(forms.Form):
 	"""Sign up form."""
 
-	username = forms.CharField(
+	profile_username = forms.CharField(
 		min_length=4,
 		max_length=50
 	)

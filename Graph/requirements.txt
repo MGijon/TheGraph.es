@@ -48,7 +48,7 @@ openpyxl==3.0.2
 opt-einsum==3.2.0
 packaging==20.0
 pandas==0.25.3
-Pillow==6.2.1
+Pillow==8.2.0
 protobuf==3.6.1
 pyasn1==0.4.8
 pyasn1-modules==0.2.8

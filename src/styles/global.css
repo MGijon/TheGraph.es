@@ -40,3 +40,11 @@ body {
 .katex-display {
   @apply overflow-x-auto overflow-y-hidden py-2;
 }
+
+.nav-menu > summary {
+  list-style: none;
+}
+
+.nav-menu > summary::-webkit-details-marker {
+  display: none;
+}

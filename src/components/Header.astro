@@ -6,6 +6,7 @@ const navItems = [
   { href: '/writing', label: 'Writing' },
   { href: '/projects', label: 'Projects' },
   { href: '/research', label: 'Research' },
+  { href: '/cv', label: 'CV' },
   { href: '/about', label: 'About' }
 ];
 
@@ -22,8 +23,8 @@ function isActive(href: string) {
     <a href="/" class="font-mono text-sm font-semibold tracking-tight text-ink">
       thegraph<span class="text-accent">.es</span>
     </a>
-    <div class="flex items-center gap-6">
-      <ul class="flex gap-5 text-sm">
+    <div class="flex items-center gap-4">
+      <ul class="hidden gap-5 text-sm sm:flex">
         {navItems.map((item) => (
           <li>
             <a
@@ -38,7 +39,44 @@ function isActive(href: string) {
           </li>
         ))}
       </ul>
+
       <ThemeToggle client:only="react" />
+
+      <details class="nav-menu relative sm:hidden">
+        <summary
+          class="flex cursor-pointer items-center rounded-md p-1.5 text-ink/70 transition-colors hover:bg-ink/5 hover:text-ink"
+          aria-label="Open menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
+          </svg>
+        </summary>
+        <ul class="absolute right-0 top-full z-10 mt-2 w-44 rounded-md border border-ink/10 bg-paper py-1 text-sm shadow-lg">
+          {navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'block px-4 py-2 transition-colors hover:bg-ink/5',
+                  isActive(item.href) ? 'text-accent font-medium' : 'text-ink/70'
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
     </div>
   </nav>
 </header>
+
+<script is:inline>
+  document.addEventListener('click', (event) => {
+    document.querySelectorAll('details.nav-menu[open]').forEach((menu) => {
+      if (!menu.contains(event.target)) menu.removeAttribute('open');
+    });
+  });
+</script>

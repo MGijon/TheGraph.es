@@ -1,0 +1,59 @@
+---
+import { SEO } from 'astro-seo';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  article?: boolean;
+}
+
+const { title, description, image, article = false } = Astro.props;
+
+const siteName = 'thegraph.es';
+const pageTitle = title === siteName ? siteName : `${title} · ${siteName}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socialImage = image ? new URL(image, Astro.site).toString() : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title={siteName} href="/rss.xml" />
+    <script is:inline>
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.classList.toggle('dark', stored === 'dark' || (!stored && prefersDark));
+    </script>
+
+    <SEO
+      title={pageTitle}
+      description={description}
+      canonical={canonical.toString()}
+      openGraph={{
+        basic: {
+          title: pageTitle,
+          type: article ? 'article' : 'website',
+          image: socialImage ?? ''
+        }
+      }}
+      twitter={{
+        card: socialImage ? 'summary_large_image' : 'summary'
+      }}
+    />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <Header />
+    <main class="mx-auto w-full max-w-3xl flex-1 px-4 py-12">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,105 @@
+---
+title: "Building a Time-Series Engine in Rust"
+date: "2026-08-15"
+tags:
+  - Rust
+  - Data Engineering
+  - Performance
+description: "Notes on designing an append-only, memory-mapped time-series storage engine in Rust: segment layout, delta-of-delta compression, and binary-search queries."
+---
+
+Most time-series workloads share the same shape: a flood of monotonically
+increasing timestamps paired with slowly-changing numeric values, written
+once and queried by range. That shape is narrow enough to exploit. This
+post walks through a small time-series engine written in Rust, built around
+three ideas — an append-only segment log, delta-of-delta compression for
+timestamps, and binary-search range queries over memory-mapped files.
+
+## Storage model
+
+Data lands in fixed-size segments. Each segment is append-only while it's
+open and immutable once sealed, which means readers never need to
+coordinate with writers on a sealed segment — no locks, no torn reads.
+
+```rust
+pub struct Segment {
+    path: PathBuf,
+    mmap: MmapMut,
+    len: usize,
+    capacity: usize,
+}
+
+impl Segment {
+    pub fn append(&mut self, point: DataPoint) -> Result<(), EngineError> {
+        if self.len + DataPoint::ENCODED_SIZE > self.capacity {
+            return Err(EngineError::SegmentFull);
+        }
+
+        let offset = self.len;
+        point.encode_into(&mut self.mmap[offset..]);
+        self.len += DataPoint::ENCODED_SIZE;
+        Ok(())
+    }
+}
+```
+
+Sealing a segment triggers compression and writes a small index footer —
+just enough metadata to binary-search into the segment without decoding it
+first.
+
+## Compressing timestamps
+
+Timestamps in a segment are almost always evenly spaced, so raw deltas
+already compress well. Delta-of-delta encoding does better: instead of
+storing the delta between consecutive timestamps, it stores the delta of
+that delta.
+
+For a timestamp sequence $t_0, t_1, \dots, t_n$, define:
+
+$$
+\Delta_i = t_i - t_{i-1}, \qquad \Delta\Delta_i = \Delta_i - \Delta_{i-1}
+$$
+
+When the sampling interval is constant, $\Delta\Delta_i$ collapses to zero
+and encodes in a single bit. Gorilla-style variable-length encoding handles
+the rest:
+
+$$
+\text{bits}(\Delta\Delta_i) =
+\begin{cases}
+1 & \Delta\Delta_i = 0 \\
+9 & \Delta\Delta_i \in [-63, 64) \\
+12 & \Delta\Delta_i \in [-255, 256) \\
+\dots
+\end{cases}
+$$
+
+In practice, sensor and metrics data compresses to under 2 bits per point
+with this scheme, well below what general-purpose compressors achieve on
+raw timestamps.
+
+## Querying a segment
+
+Because each segment is sealed and sorted by timestamp, a range query is
+just two binary searches against the index footer, followed by a scan
+between the resulting offsets:
+
+```rust
+pub fn query(&self, from: Timestamp, to: Timestamp) -> impl Iterator<Item = DataPoint> + '_ {
+    let start = self.index.lower_bound(from);
+    let end = self.index.upper_bound(to);
+
+    self.decode_range(start, end)
+}
+```
+
+The index footer is small enough to keep resident in memory across all
+sealed segments, so a query touches disk only for the segments it actually
+overlaps — everything else is skipped without decoding.
+
+## What's next
+
+The current engine handles a single node and a single writer per segment.
+The obvious next step is replicating sealed segments to object storage and
+teaching the query layer to fetch cold segments on demand, which turns this
+from a local cache into something closer to a durable store.

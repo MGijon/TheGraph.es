@@ -1,0 +1,44 @@
+name: Deploy to production
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+# Only one deploy at a time; if a newer tag lands mid-deploy, let the
+# current run finish rather than racing two uploads against the server.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Deploy dist/ via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          port: ${{ secrets.FTP_PORT || 21 }}
+          protocol: ftps
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.REMOTE_TARGET_DIR }}/
+          dangerous-clean-slate: true

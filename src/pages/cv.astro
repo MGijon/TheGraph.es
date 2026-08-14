@@ -10,16 +10,21 @@ import {
   teaching,
   skills
 } from '../data/cv';
+
+// No PDF export yet — flip this back on once /cv.pdf exists.
+const cvPdfAvailable = false;
 ---
 
 <BaseLayout title="CV" description="Manuel Gijón's CV — experience, projects, education, publications, and teaching.">
-  <a
-    href="/cv.pdf"
-    download
-    class="inline-flex items-center gap-2 rounded-md bg-ink px-4 py-2 text-sm font-medium text-paper transition-opacity hover:opacity-90"
-  >
-    Download CV (PDF)
-  </a>
+  {cvPdfAvailable && (
+    <a
+      href="/cv.pdf"
+      download
+      class="inline-flex items-center gap-2 rounded-md bg-ink px-4 py-2 text-sm font-medium text-paper transition-opacity hover:opacity-90"
+    >
+      Download CV (PDF)
+    </a>
+  )}
 
   <header class="mt-10">
     <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">{cvHeader.name}</h1>
@@ -47,6 +52,9 @@ import {
               <li>{bullet}</li>
             ))}
           </ul>
+          {job.stack && job.stack.length > 0 && (
+            <p class="mt-2 text-xs text-ink/50">{job.stack.join(' · ')}</p>
+          )}
         </li>
       ))}
     </ul>
@@ -57,16 +65,22 @@ import {
     <ul class="mt-6 space-y-4">
       {cvProjects.map((project) => (
         <li>
-          <h3 class="font-medium">
-            {project.href ? (
-              <a href={project.href} class="hover:text-accent" target="_blank" rel="noopener noreferrer">
-                {project.name}
-              </a>
-            ) : (
-              project.name
-            )}
-          </h3>
+          <h3 class="font-medium">{project.name}</h3>
           <p class="text-sm text-ink/70">{project.description}</p>
+          {(project.href || project.docsHref) && (
+            <div class="mt-2 flex gap-4 text-sm">
+              {project.href && (
+                <a href={project.href} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                  Source &rarr;
+                </a>
+              )}
+              {project.docsHref && (
+                <a href={project.docsHref} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                  Docs &rarr;
+                </a>
+              )}
+            </div>
+          )}
         </li>
       ))}
     </ul>
@@ -96,12 +110,17 @@ import {
     <ul class="mt-6 space-y-3">
       {publications.map((pub) => (
         <li>
-          <a href={pub.href} class="font-medium hover:text-accent" target="_blank" rel="noopener noreferrer">
-            {pub.title}
-          </a>
+          <h3 class="font-medium">{pub.title}</h3>
           <p class="text-sm text-ink/60">
             {[pub.venue, pub.date, pub.authors].filter(Boolean).join(' · ')}
           </p>
+          {pub.href && (
+            <div class="mt-2 flex gap-4 text-sm">
+              <a href={pub.href} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                {pub.cta ?? 'Paper'} &rarr;
+              </a>
+            </div>
+          )}
         </li>
       ))}
     </ul>
@@ -116,8 +135,24 @@ import {
             <h3 class="font-medium">{entry.role}</h3>
             <span class="text-sm text-ink/50">{entry.period}</span>
           </div>
-          <p class="text-sm text-ink/60">{entry.institution}</p>
-          {entry.description && <p class="mt-1 text-sm text-ink/70">{entry.description}</p>}
+          <p class="text-sm text-ink/60">
+            {entry.institution}
+            {entry.location && <> · {entry.location}</>}
+          </p>
+          {entry.description && (
+            Array.isArray(entry.description) ? (
+              <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-ink/80">
+                {entry.description.map((line) => (
+                  <li>{line}</li>
+                ))}
+              </ul>
+            ) : (
+              <p class="mt-1 text-sm text-ink/70">{entry.description}</p>
+            )
+          )}
+          {entry.stack && entry.stack.length > 0 && (
+            <p class="mt-2 text-xs text-ink/50">{entry.stack.join(' · ')}</p>
+          )}
         </li>
       ))}
     </ul>

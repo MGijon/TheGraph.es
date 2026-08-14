@@ -8,8 +8,8 @@ const writing = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
     description: z.string(),
-    draft: z.boolean().default(false)
-  })
+    draft: z.boolean().default(false),
+  }),
 });
 
 const projects = defineCollection({
@@ -21,8 +21,8 @@ const projects = defineCollection({
     description: z.string(),
     repoUrl: z.string().url().optional(),
     liveUrl: z.string().url().optional(),
-    draft: z.boolean().default(false)
-  })
+    draft: z.boolean().default(false),
+  }),
 });
 
 const research = defineCollection({
@@ -32,8 +32,8 @@ const research = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
     description: z.string(),
-    draft: z.boolean().default(false)
-  })
+    draft: z.boolean().default(false),
+  }),
 });
 
 export const collections = { writing, projects, research };

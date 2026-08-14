@@ -28,13 +28,15 @@ src/
 
 ## Commands
 
-| Command             | Action                                      |
-| :------------------- | :------------------------------------------ |
-| `npm install`         | Install dependencies                        |
-| `npm run dev`          | Start local dev server at `localhost:4321`  |
-| `npm run build`        | Build the production site to `./dist/`      |
-| `npm run preview`      | Preview the build locally                   |
-| `npm run astro check`  | Type-check the project                      |
+| Command                | Action                                        |
+| :--------------------- | :-------------------------------------------- |
+| `npm install`          | Install dependencies                          |
+| `npm run dev`          | Start local dev server at `localhost:4321`    |
+| `npm run build`        | Build the production site to `./dist/`        |
+| `npm run preview`      | Preview the build locally                     |
+| `npm run astro check`  | Type-check the project                        |
+| `npm run format`       | Format the codebase with Prettier             |
+| `npm run format:check` | Check formatting without writing (used in CI) |
 
 ## Adding content
 

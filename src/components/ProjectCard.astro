@@ -11,32 +11,48 @@ interface Props {
 const { title, description, tags = [], href, repoUrl, liveUrl } = Astro.props;
 ---
 
-<article class="group relative rounded-lg border border-ink/10 p-5 transition-colors hover:border-accent/50">
+<article
+  class="group relative rounded-lg border border-ink/10 p-5 transition-colors hover:border-accent/50"
+>
   <h3 class="text-lg font-semibold">
     <a href={href} class="after:absolute after:inset-0">
       {title}
     </a>
   </h3>
   <p class="mt-2 text-sm text-ink/70">{description}</p>
-  {tags.length > 0 && (
-    <ul class="mt-4 flex flex-wrap gap-2">
-      {tags.map((tag) => (
-        <li class="rounded-full bg-ink/5 px-2 py-0.5 text-xs text-ink/60">{tag}</li>
-      ))}
-    </ul>
-  )}
-  {(repoUrl || liveUrl) && (
-    <div class="relative z-10 mt-4 flex gap-4 text-sm">
-      {repoUrl && (
-        <a href={repoUrl} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
-          Source &rarr;
-        </a>
-      )}
-      {liveUrl && (
-        <a href={liveUrl} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
-          Live &rarr;
-        </a>
-      )}
-    </div>
-  )}
+  {
+    tags.length > 0 && (
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <li class="rounded-full bg-ink/5 px-2 py-0.5 text-xs text-ink/60">{tag}</li>
+        ))}
+      </ul>
+    )
+  }
+  {
+    (repoUrl || liveUrl) && (
+      <div class="relative z-10 mt-4 flex gap-4 text-sm">
+        {repoUrl && (
+          <a
+            href={repoUrl}
+            class="text-accent hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Source &rarr;
+          </a>
+        )}
+        {liveUrl && (
+          <a
+            href={liveUrl}
+            class="text-accent hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Live &rarr;
+          </a>
+        )}
+      </div>
+    )
+  }
 </article>

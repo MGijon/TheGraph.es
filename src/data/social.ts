@@ -8,5 +8,5 @@ export const socialLinks: SocialLink[] = [
   { label: 'ORCID', href: 'https://orcid.org/0009-0005-6413-9006' },
   { label: 'X', href: 'https://x.com/mgijon94' },
   { label: 'Bluesky', href: 'https://bsky.app/profile/mgijon94.bsky.social' },
-  { label: 'Reddit', href: 'https://www.reddit.com/user/m_gijon/' }
+  { label: 'Reddit', href: 'https://www.reddit.com/user/m_gijon/' },
 ];

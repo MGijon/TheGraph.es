@@ -17,19 +17,19 @@ export default defineConfig({
   integrations: [react(), mdx(), sitemap()],
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
 
   markdown: {
     processor: unified({
       remarkPlugins: [remarkMath],
-      rehypePlugins: [rehypeKatex]
+      rehypePlugins: [rehypeKatex],
     }),
     shikiConfig: {
       themes: {
         light: 'github-light',
-        dark: 'github-dark'
-      }
-    }
-  }
+        dark: 'github-dark',
+      },
+    },
+  },
 });

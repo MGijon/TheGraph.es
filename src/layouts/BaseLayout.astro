@@ -30,7 +30,10 @@ const socialImage = image ? new URL(image, Astro.site).toString() : undefined;
     <script is:inline>
       const stored = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.classList.toggle('dark', stored === 'dark' || (!stored && prefersDark));
+      document.documentElement.classList.toggle(
+        'dark',
+        stored === 'dark' || (!stored && prefersDark)
+      );
     </script>
 
     <SEO
@@ -41,11 +44,11 @@ const socialImage = image ? new URL(image, Astro.site).toString() : undefined;
         basic: {
           title: pageTitle,
           type: article ? 'article' : 'website',
-          image: socialImage ?? ''
-        }
+          image: socialImage ?? '',
+        },
       }}
       twitter={{
-        card: socialImage ? 'summary_large_image' : 'summary'
+        card: socialImage ? 'summary_large_image' : 'summary',
       }}
     />
   </head>

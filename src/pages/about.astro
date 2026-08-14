@@ -7,17 +7,21 @@ import { socialLinks } from '../data/social';
   <article class="prose prose-neutral max-w-none">
     <h1>About</h1>
     <p>
-      I'm Manuel Gijón. I work on data engineering and distributed systems,
-      and I use this site to write up whatever I'm digging into — from
-      systems performance to research papers worth a closer read.
+      I'm Manuel Gijón. I work on data engineering and distributed systems, and I use this site to
+      write up whatever I'm digging into — from systems performance to research papers worth a
+      closer read.
     </p>
     <h2>Elsewhere</h2>
     <ul>
-      {socialLinks.map((link) => (
-        <li>
-          <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
-        </li>
-      ))}
+      {
+        socialLinks.map((link) => (
+          <li>
+            <a href={link.href} target="_blank" rel="noopener noreferrer">
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </article>
 </BaseLayout>

@@ -8,23 +8,28 @@ import {
   education,
   publications,
   teaching,
-  skills
+  skills,
 } from '../data/cv';
 
 // No PDF export yet — flip this back on once /cv.pdf exists.
 const cvPdfAvailable = false;
 ---
 
-<BaseLayout title="CV" description="Manuel Gijón's CV — experience, projects, education, publications, and teaching.">
-  {cvPdfAvailable && (
-    <a
-      href="/cv.pdf"
-      download
-      class="inline-flex items-center gap-2 rounded-md bg-ink px-4 py-2 text-sm font-medium text-paper transition-opacity hover:opacity-90"
-    >
-      Download CV (PDF)
-    </a>
-  )}
+<BaseLayout
+  title="CV"
+  description="Manuel Gijón's CV — experience, projects, education, publications, and teaching."
+>
+  {
+    cvPdfAvailable && (
+      <a
+        href="/cv.pdf"
+        download
+        class="inline-flex items-center gap-2 rounded-md bg-ink px-4 py-2 text-sm font-medium text-paper transition-opacity hover:opacity-90"
+      >
+        Download CV (PDF)
+      </a>
+    )
+  }
 
   <header class="mt-10">
     <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">{cvHeader.name}</h1>
@@ -40,133 +45,163 @@ const cvPdfAvailable = false;
   <section class="mt-14">
     <h2 class="text-xl font-semibold">Experience</h2>
     <ul class="mt-6 space-y-8">
-      {experience.map((job) => (
-        <li>
-          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            <h3 class="font-medium">{job.role}</h3>
-            <span class="text-sm text-ink/50">{job.period}</span>
-          </div>
-          <p class="text-sm text-ink/60">{job.company} · {job.location}</p>
-          <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-ink/80">
-            {job.bullets.map((bullet) => (
-              <li>{bullet}</li>
-            ))}
-          </ul>
-          {job.stack && job.stack.length > 0 && (
-            <p class="mt-2 text-xs text-ink/50">{job.stack.join(' · ')}</p>
-          )}
-        </li>
-      ))}
+      {
+        experience.map((job) => (
+          <li>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 class="font-medium">{job.role}</h3>
+              <span class="text-sm text-ink/50">{job.period}</span>
+            </div>
+            <p class="text-sm text-ink/60">
+              {job.company} · {job.location}
+            </p>
+            <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-ink/80">
+              {job.bullets.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+            {job.stack && job.stack.length > 0 && (
+              <p class="mt-2 text-xs text-ink/50">{job.stack.join(' · ')}</p>
+            )}
+          </li>
+        ))
+      }
     </ul>
   </section>
 
   <section class="mt-14">
     <h2 class="text-xl font-semibold">Projects</h2>
     <ul class="mt-6 space-y-4">
-      {cvProjects.map((project) => (
-        <li>
-          <h3 class="font-medium">{project.name}</h3>
-          <p class="text-sm text-ink/70">{project.description}</p>
-          {(project.href || project.docsHref) && (
-            <div class="mt-2 flex gap-4 text-sm">
-              {project.href && (
-                <a href={project.href} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
-                  Source &rarr;
-                </a>
-              )}
-              {project.docsHref && (
-                <a href={project.docsHref} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
-                  Docs &rarr;
-                </a>
-              )}
-            </div>
-          )}
-        </li>
-      ))}
+      {
+        cvProjects.map((project) => (
+          <li>
+            <h3 class="font-medium">{project.name}</h3>
+            <p class="text-sm text-ink/70">{project.description}</p>
+            {(project.href || project.docsHref) && (
+              <div class="mt-2 flex gap-4 text-sm">
+                {project.href && (
+                  <a
+                    href={project.href}
+                    class="text-accent hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Source &rarr;
+                  </a>
+                )}
+                {project.docsHref && (
+                  <a
+                    href={project.docsHref}
+                    class="text-accent hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Docs &rarr;
+                  </a>
+                )}
+              </div>
+            )}
+          </li>
+        ))
+      }
     </ul>
   </section>
 
   <section class="mt-14">
     <h2 class="text-xl font-semibold">Education</h2>
     <ul class="mt-6 space-y-4">
-      {education.map((entry) => (
-        <li>
-          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            <h3 class="font-medium">{entry.degree}</h3>
-            <span class="text-sm text-ink/50">{entry.period}</span>
-          </div>
-          <p class="text-sm text-ink/60">
-            {entry.institution}
-            {entry.location && <> · {entry.location}</>}
-          </p>
-          {entry.details && <p class="mt-1 text-sm text-ink/70">{entry.details}</p>}
-        </li>
-      ))}
+      {
+        education.map((entry) => (
+          <li>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 class="font-medium">{entry.degree}</h3>
+              <span class="text-sm text-ink/50">{entry.period}</span>
+            </div>
+            <p class="text-sm text-ink/60">
+              {entry.institution}
+              {entry.location && <> · {entry.location}</>}
+            </p>
+            {entry.details && <p class="mt-1 text-sm text-ink/70">{entry.details}</p>}
+          </li>
+        ))
+      }
     </ul>
   </section>
 
   <section class="mt-14">
     <h2 class="text-xl font-semibold">Publications</h2>
     <ul class="mt-6 space-y-3">
-      {publications.map((pub) => (
-        <li>
-          <h3 class="font-medium">{pub.title}</h3>
-          <p class="text-sm text-ink/60">
-            {[pub.venue, pub.date, pub.authors].filter(Boolean).join(' · ')}
-          </p>
-          {pub.href && (
-            <div class="mt-2 flex gap-4 text-sm">
-              <a href={pub.href} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
-                {pub.cta ?? 'Paper'} &rarr;
-              </a>
-            </div>
-          )}
-        </li>
-      ))}
+      {
+        publications.map((pub) => (
+          <li>
+            <h3 class="font-medium">{pub.title}</h3>
+            <p class="text-sm text-ink/60">
+              {[pub.venue, pub.date, pub.authors].filter(Boolean).join(' · ')}
+            </p>
+            {pub.href && (
+              <div class="mt-2 flex gap-4 text-sm">
+                <a
+                  href={pub.href}
+                  class="text-accent hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {pub.cta ?? 'Paper'} &rarr;
+                </a>
+              </div>
+            )}
+          </li>
+        ))
+      }
     </ul>
   </section>
 
   <section class="mt-14">
     <h2 class="text-xl font-semibold">Teaching</h2>
     <ul class="mt-6 space-y-4">
-      {teaching.map((entry) => (
-        <li>
-          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            <h3 class="font-medium">{entry.role}</h3>
-            <span class="text-sm text-ink/50">{entry.period}</span>
-          </div>
-          <p class="text-sm text-ink/60">
-            {entry.institution}
-            {entry.location && <> · {entry.location}</>}
-          </p>
-          {entry.description && (
-            Array.isArray(entry.description) ? (
-              <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-ink/80">
-                {entry.description.map((line) => (
-                  <li>{line}</li>
-                ))}
-              </ul>
-            ) : (
-              <p class="mt-1 text-sm text-ink/70">{entry.description}</p>
-            )
-          )}
-          {entry.stack && entry.stack.length > 0 && (
-            <p class="mt-2 text-xs text-ink/50">{entry.stack.join(' · ')}</p>
-          )}
-        </li>
-      ))}
+      {
+        teaching.map((entry) => (
+          <li>
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 class="font-medium">{entry.role}</h3>
+              <span class="text-sm text-ink/50">{entry.period}</span>
+            </div>
+            <p class="text-sm text-ink/60">
+              {entry.institution}
+              {entry.location && <> · {entry.location}</>}
+            </p>
+            {entry.description &&
+              (Array.isArray(entry.description) ? (
+                <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-ink/80">
+                  {entry.description.map((line) => (
+                    <li>{line}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="mt-1 text-sm text-ink/70">{entry.description}</p>
+              ))}
+            {entry.stack && entry.stack.length > 0 && (
+              <p class="mt-2 text-xs text-ink/50">{entry.stack.join(' · ')}</p>
+            )}
+          </li>
+        ))
+      }
     </ul>
   </section>
 
   <section class="mt-14 mb-10">
     <h2 class="text-xl font-semibold">Skills</h2>
     <dl class="mt-6 grid gap-x-8 gap-y-4 sm:grid-cols-2">
-      {skills.map((group) => (
-        <div>
-          <dt class="text-xs font-semibold tracking-wide text-ink/50 uppercase">{group.category}</dt>
-          <dd class="mt-1 text-sm text-ink/80">{group.items.join(' · ')}</dd>
-        </div>
-      ))}
+      {
+        skills.map((group) => (
+          <div>
+            <dt class="text-xs font-semibold tracking-wide text-ink/50 uppercase">
+              {group.category}
+            </dt>
+            <dd class="mt-1 text-sm text-ink/80">{group.items.join(' · ')}</dd>
+          </div>
+        ))
+      }
     </dl>
   </section>
 </BaseLayout>

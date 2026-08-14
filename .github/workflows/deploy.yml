@@ -3,7 +3,7 @@ name: Deploy to production
 on:
   push:
     tags:
-      - "v*.*.*"
+      - 'v*.*.*'
 
 # Only one deploy at a time; if a newer tag lands mid-deploy, let the
 # current run finish rather than racing two uploads against the server.

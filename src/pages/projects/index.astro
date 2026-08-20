@@ -10,18 +10,22 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
 
 <BaseLayout title="Projects" description="Things I've built.">
   <h1 class="text-3xl font-bold tracking-tight">Projects</h1>
-  <div class="mt-10 grid gap-4 sm:grid-cols-2">
-    {
-      projects.map((project) => (
-        <ProjectCard
-          title={project.data.title}
-          description={project.data.description}
-          tags={project.data.tags}
-          href={`/projects/${project.id}`}
-          repoUrl={project.data.repoUrl}
-          liveUrl={project.data.liveUrl}
-        />
-      ))
-    }
-  </div>
+  {
+    projects.length > 0 ? (
+      <div class="mt-10 grid gap-4 sm:grid-cols-2">
+        {projects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            tags={project.data.tags}
+            href={`/projects/${project.id}`}
+            repoUrl={project.data.repoUrl}
+            liveUrl={project.data.liveUrl}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="mt-10 text-sm text-ink/60">Nothing published yet.</p>
+    )
+  }
 </BaseLayout>

@@ -10,4 +10,5 @@ export const socialLinks: SocialLink[] = [
   { label: 'X', href: 'https://x.com/mgijon94' },
   { label: 'Bluesky', href: 'https://bsky.app/profile/mgijon94.bsky.social' },
   { label: 'Reddit', href: 'https://www.reddit.com/user/m_gijon/' },
+  { label: 'Medium', href: 'https://mgijon94.medium.com/' },
 ];

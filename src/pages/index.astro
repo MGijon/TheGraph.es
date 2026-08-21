@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const writing = (await getCollection('writing', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const projects = (await getCollection('projects', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
+---
+
+<BaseLayout
+  title="thegraph.es"
+  description="Manuel Gijón's notes on data engineering, distributed systems, and research."
+>
+  <section>
+    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Manuel Gijón</h1>
+    <p class="mt-4 max-w-xl text-ink/70">
+      I write about data engineering, distributed systems, and the occasional research rabbit hole.
+      This is where the notes live.
+    </p>
+  </section>
+
+  {
+    writing.length > 0 && (
+      <section class="mt-16">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-xl font-semibold">Recent writing</h2>
+          <a href="/writing" class="text-sm text-accent hover:underline">
+            View all &rarr;
+          </a>
+        </div>
+        <ul class="mt-6 divide-y divide-ink/10">
+          {writing.map((post) => (
+            <li class="py-4">
+              <a
+                href={`/writing/${post.id}`}
+                class="group flex items-baseline justify-between gap-4"
+              >
+                <span class="font-medium group-hover:text-accent">{post.data.title}</span>
+                <time datetime={post.data.date.toISOString()} class="shrink-0 text-sm text-ink/50">
+                  {post.data.date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </time>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    projects.length > 0 && (
+      <section class="mt-16">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-xl font-semibold">Projects</h2>
+          <a href="/projects" class="text-sm text-accent hover:underline">
+            View all &rarr;
+          </a>
+        </div>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          {projects.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              tags={project.data.tags}
+              href={`/projects/${project.id}`}
+              repoUrl={project.data.repoUrl}
+              liveUrl={project.data.liveUrl}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

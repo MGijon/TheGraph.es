@@ -48,6 +48,8 @@ const speak = defineCollection({
     eventUrl: z.string().url().optional(),
     slidesUrl: z.string().url().optional(),
     videoUrl: z.string().url().optional(),
+    // Path under /public, e.g. "/images/<slug>/photo.webp". Used as the social preview image.
+    image: z.string().optional(),
     tags: z.array(z.string()).default([]),
     description: z.string(),
     related,

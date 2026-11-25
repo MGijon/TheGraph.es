@@ -22,6 +22,11 @@ const projects = defineCollection({
     category: z.enum(['engineering', 'venture']).default('engineering'),
     repoUrl: z.string().url().optional(),
     liveUrl: z.string().url().optional(),
+    // Related entries from other collections, as "<collection>/<id>",
+    // e.g. "writing/building-a-time-series-engine-in-rust" or "speak/my-talk".
+    related: z
+      .array(z.string().regex(/^(writing|research|speak)\/.+$/, 'Use "writing|research|speak/<id>"'))
+      .default([]),
     draft: z.boolean().default(false),
   }),
 });

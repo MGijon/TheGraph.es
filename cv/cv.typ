@@ -42,11 +42,9 @@
 // ---- header -------------------------------------------------------------
 
 #align(center)[
-  #text(size: 20pt, weight: "bold", cv.header.name) \
-  #v(0.1em)
-  #text(size: 11pt, cv.header.titles) \
-  #text(fill: muted, cv.header.location) \
-  #v(0.3em)
+  #block(below: 12pt, text(size: 20pt, weight: "bold", cv.header.name))
+  #block(below: 4pt, text(size: 11pt, cv.header.titles))
+  #block(below: 6pt, text(fill: muted, cv.header.location))
   #text(size: 9pt, cv.links.map(l => link(l.href, l.label)).join(h(0.5em) + "·" + h(0.5em)))
 ]
 

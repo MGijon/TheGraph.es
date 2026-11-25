@@ -19,6 +19,7 @@ const projects = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
     description: z.string(),
+    category: z.enum(['engineering', 'venture']).default('engineering'),
     repoUrl: z.string().url().optional(),
     liveUrl: z.string().url().optional(),
     draft: z.boolean().default(false),

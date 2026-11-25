@@ -1,8 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getSpeakEntries, kindLabel } from '../../lib/speak';
+import TagFilter from '../../components/TagFilter.astro';
+import { collectTags, tagData } from '../../lib/tags';
 
 const { upcoming, past } = await getSpeakEntries();
+const tags = collectTags([...upcoming, ...past]);
 
 // "Upcoming events" is always shown (with an empty state); "Past events" only when there are any.
 const sections = [
@@ -16,16 +19,15 @@ const sections = [
   <p class="mt-4 max-w-xl text-ink/70">
     Talks, workshops, panels, and other public appearances — past and upcoming.
   </p>
+  <TagFilter tags={tags} />
   {
     sections.map((section) => (
-      <section class="mt-12">
+      <section class="mt-12" data-filter-group>
         <h2 class="text-xl font-semibold">{section.heading}</h2>
-        {section.items.length === 0 && (
-          <p class="mt-4 text-sm text-ink/60">{section.empty}</p>
-        )}
+        {section.items.length === 0 && <p class="mt-4 text-sm text-ink/60">{section.empty}</p>}
         <ul class="mt-4 divide-y divide-ink/10">
           {section.items.map((entry) => (
-            <li class="py-6">
+            <li class="py-6" data-filter-item data-tags={tagData(entry.data.tags)}>
               <a href={`/speak/${entry.id}`} class="group block">
                 <div class="flex flex-col gap-1">
                   <h3 class="text-lg font-semibold group-hover:text-accent">{entry.data.title}</h3>
@@ -57,4 +59,5 @@ const sections = [
       </section>
     ))
   }
+  <p data-filter-empty hidden class="mt-10 text-sm text-ink/60">Nothing tagged with that yet.</p>
 </BaseLayout>

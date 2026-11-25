@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import { tagSlug } from '../lib/tags';
 
 interface Props {
   title: string;
@@ -7,9 +8,11 @@ interface Props {
   date: Date;
   tags?: string[];
   image?: string;
+  /** Section list page (e.g. "/writing"); when set, tags link to it filtered by that tag. */
+  tagBase?: string;
 }
 
-const { title, description, date, tags = [], image } = Astro.props;
+const { title, description, date, tags = [], image, tagBase } = Astro.props;
 
 const formattedDate = date.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -30,7 +33,18 @@ const formattedDate = date.toLocaleDateString('en-US', {
               <span aria-hidden="true">&middot;</span>
               <ul class="flex flex-wrap gap-2">
                 {tags.map((tag) => (
-                  <li class="rounded-full bg-ink/5 px-2 py-0.5 text-xs">{tag}</li>
+                  <li>
+                    {tagBase ? (
+                      <a
+                        href={`${tagBase}?tag=${tagSlug(tag)}`}
+                        class="block rounded-full bg-ink/5 px-2 py-0.5 text-xs transition-colors hover:bg-accent/10 hover:text-accent"
+                      >
+                        {tag}
+                      </a>
+                    ) : (
+                      <span class="block rounded-full bg-ink/5 px-2 py-0.5 text-xs">{tag}</span>
+                    )}
+                  </li>
                 ))}
               </ul>
             </>

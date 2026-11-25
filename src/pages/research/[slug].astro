@@ -20,6 +20,7 @@ const { Content } = await render(note);
   description={note.data.description}
   date={note.data.date}
   tags={note.data.tags}
+  tagBase="/research"
 >
   <Content />
   <RelatedEntries collection="research" id={note.id} />

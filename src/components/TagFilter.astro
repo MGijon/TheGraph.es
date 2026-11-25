@@ -1,0 +1,90 @@
+---
+/**
+ * Tag chips that filter the list on the current page.
+ *
+ * Markup contract on the page:
+ * - each filterable item has `data-filter-item` and `data-tags="slug-a slug-b"` (see tagData())
+ * - optional groups (e.g. "Past events") have `data-filter-group`; hidden when all their items are
+ * - an optional `data-filter-empty` element is shown when nothing matches
+ *
+ * The selected tag is kept in the URL as ?tag=<slug>.
+ */
+interface Props {
+  tags: { slug: string; label: string; count: number }[];
+}
+
+const { tags } = Astro.props;
+const chip =
+  'rounded-full border px-3 py-1 text-xs transition-colors border-ink/10 text-ink/60 hover:border-accent/50 hover:text-accent aria-pressed:border-accent aria-pressed:bg-accent/10 aria-pressed:text-accent';
+---
+
+{
+  tags.length > 0 && (
+    <div class="mt-8" data-tag-filter>
+      <p class="sr-only" id="tag-filter-label">
+        Filter by tag
+      </p>
+      <ul class="flex flex-wrap gap-2" aria-labelledby="tag-filter-label">
+        <li>
+          <button type="button" class={chip} data-tag="" aria-pressed="true">
+            All
+          </button>
+        </li>
+        {tags.map((tag) => (
+          <li>
+            <button type="button" class={chip} data-tag={tag.slug} aria-pressed="false">
+              {tag.label} <span class="opacity-60">{tag.count}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+<script>
+  function applyFilter(root: Element, tag: string) {
+    const known = root.querySelector(`[data-tag="${CSS.escape(tag)}"]`);
+    const active = known ? tag : '';
+
+    root.querySelectorAll<HTMLButtonElement>('[data-tag]').forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.tag === active));
+    });
+
+    let visible = 0;
+    document.querySelectorAll<HTMLElement>('[data-filter-item]').forEach((item) => {
+      const tags = (item.dataset.tags ?? '').split(' ');
+      const show = active === '' || tags.includes(active);
+      item.hidden = !show;
+      if (show) visible += 1;
+    });
+
+    document.querySelectorAll<HTMLElement>('[data-filter-group]').forEach((group) => {
+      const items = group.querySelectorAll<HTMLElement>('[data-filter-item]');
+      // Groups with no items (e.g. an empty "Upcoming events") only show when unfiltered.
+      group.hidden = items.length === 0 ? active !== '' : [...items].every((item) => item.hidden);
+    });
+
+    document.querySelectorAll<HTMLElement>('[data-filter-empty]').forEach((empty) => {
+      empty.hidden = visible > 0;
+    });
+
+    const url = new URL(window.location.href);
+    if (active) url.searchParams.set('tag', active);
+    else url.searchParams.delete('tag');
+    history.replaceState(null, '', url);
+  }
+
+  document.querySelectorAll('[data-tag-filter]').forEach((root) => {
+    root.addEventListener('click', (event) => {
+      const button = (event.target as Element).closest<HTMLButtonElement>('[data-tag]');
+      if (!button) return;
+      const tag = button.dataset.tag ?? '';
+      // Clicking the active tag again clears the filter.
+      applyFilter(root, button.getAttribute('aria-pressed') === 'true' ? '' : tag);
+    });
+
+    const initial = new URL(window.location.href).searchParams.get('tag');
+    if (initial) applyFilter(root, initial);
+  });
+</script>

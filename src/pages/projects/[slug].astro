@@ -20,6 +20,7 @@ const { Content } = await render(project);
   description={project.data.description}
   date={project.data.date}
   tags={project.data.tags}
+  tagBase="/projects"
 >
   <Content />
   <RelatedEntries collection="projects" id={project.id} />

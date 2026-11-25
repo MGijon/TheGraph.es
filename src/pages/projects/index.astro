@@ -2,10 +2,14 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
+import TagFilter from '../../components/TagFilter.astro';
+import { collectTags, tagData } from '../../lib/tags';
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+
+const tags = collectTags(projects);
 
 const sections = [
   {
@@ -21,24 +25,28 @@ const sections = [
 
 <BaseLayout title="Projects" description="Things I've built.">
   <h1 class="text-3xl font-bold tracking-tight">Projects</h1>
+  <TagFilter tags={tags} />
   {
     sections.map((section) => (
-      <section class="mt-12">
+      <section class="mt-12" data-filter-group>
         <h2 class="text-xl font-semibold">{section.heading}</h2>
         <div class="mt-6 grid gap-4 sm:grid-cols-2">
           {section.items.map((project) => (
-            <ProjectCard
-              title={project.data.title}
-              description={project.data.description}
-              tags={project.data.tags}
-              href={`/projects/${project.id}`}
-              repoUrl={project.data.repoUrl}
-              liveUrl={project.data.liveUrl}
-            />
+            <div data-filter-item data-tags={tagData(project.data.tags)}>
+              <ProjectCard
+                title={project.data.title}
+                description={project.data.description}
+                tags={project.data.tags}
+                href={`/projects/${project.id}`}
+                repoUrl={project.data.repoUrl}
+                liveUrl={project.data.liveUrl}
+              />
+            </div>
           ))}
         </div>
       </section>
     ))
   }
+  <p data-filter-empty hidden class="mt-10 text-sm text-ink/60">Nothing tagged with that yet.</p>
   {projects.length === 0 && <p class="mt-10 text-sm text-ink/60">Nothing published yet.</p>}
 </BaseLayout>

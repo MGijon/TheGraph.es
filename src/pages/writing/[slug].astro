@@ -21,6 +21,7 @@ const { Content } = await render(post);
   description={post.data.description}
   date={post.data.date}
   tags={post.data.tags}
+  tagBase="/writing"
 >
   {post.data.series && <SeriesNav seriesId={post.data.series.id} currentId={post.id} />}
   <Content />

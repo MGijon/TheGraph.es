@@ -53,6 +53,13 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
                   {kindLabel[entry.data.kind]} at {entry.data.event}
                   {entry.data.location && ` · ${entry.data.location}`}
                 </span>
+                {entry.data.tags.length > 0 && (
+                  <ul class="mt-2 flex flex-wrap gap-2">
+                    {entry.data.tags.map((tag) => (
+                      <li class="rounded-full bg-ink/5 px-2 py-0.5 text-xs text-ink/60">{tag}</li>
+                    ))}
+                  </ul>
+                )}
               </a>
             </li>
           ))}
@@ -122,6 +129,13 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
                   {' · '}
                   {entry.data.event}
                 </span>
+                {entry.data.tags.length > 0 && (
+                  <ul class="mt-2 flex flex-wrap gap-2">
+                    {entry.data.tags.map((tag) => (
+                      <li class="rounded-full bg-ink/5 px-2 py-0.5 text-xs text-ink/60">{tag}</li>
+                    ))}
+                  </ul>
+                )}
               </a>
             </li>
           ))}

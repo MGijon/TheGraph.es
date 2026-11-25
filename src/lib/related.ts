@@ -28,7 +28,10 @@ export interface RelatedItem {
  * field (in that order), followed by the entries that list it (newest first).
  * Drafts are skipped. A link to an entry that doesn't exist fails the build.
  */
-export async function getRelated(collection: LinkableCollection, id: string): Promise<RelatedItem[]> {
+export async function getRelated(
+  collection: LinkableCollection,
+  id: string
+): Promise<RelatedItem[]> {
   const self = `${collection}/${id}`;
 
   const all = new Map<string, RelatedItem & { draft: boolean; related: string[] }>();

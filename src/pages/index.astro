@@ -75,10 +75,7 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
         <ul class="mt-6 divide-y divide-ink/10">
           {writing.map((post) => (
             <li class="py-4">
-              <a
-                href={`/writing/${post.id}`}
-                class="group flex flex-col gap-1"
-              >
+              <a href={`/writing/${post.id}`} class="group flex flex-col gap-1">
                 <span class="font-medium group-hover:text-accent">{post.data.title}</span>
                 <time datetime={post.data.date.toISOString()} class="text-sm text-ink/50">
                   {post.data.date.toLocaleDateString('en-US', {

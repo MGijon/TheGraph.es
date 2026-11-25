@@ -37,6 +37,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
           )
         }
       </div>
+      <slot name="meta" />
     </header>
     <slot />
   </article>

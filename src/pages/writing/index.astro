@@ -17,7 +17,7 @@ const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort(
       posts.map((post) => (
         <li class="py-6">
           <a href={`/writing/${post.id}`} class="group block">
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
+            <div class="flex flex-col gap-1">
               <h2 class="text-lg font-semibold group-hover:text-accent">{post.data.title}</h2>
               <time datetime={post.data.date.toISOString()} class="text-sm text-ink/50">
                 {post.data.date.toLocaleDateString('en-US', {

@@ -14,7 +14,7 @@ const notes = (await getCollection('research', ({ data }) => !data.draft)).sort(
       notes.map((note) => (
         <li class="py-6">
           <a href={`/research/${note.id}`} class="group block">
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
+            <div class="flex flex-col gap-1">
               <h2 class="text-lg font-semibold group-hover:text-accent">{note.data.title}</h2>
               <time datetime={note.data.date.toISOString()} class="text-sm text-ink/50">
                 {note.data.date.toLocaleDateString('en-US', {

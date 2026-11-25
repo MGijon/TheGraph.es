@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import RelatedProjects from '../../components/RelatedProjects.astro';
 
 export async function getStaticPaths() {
   const notes = await getCollection('research', ({ data }) => !data.draft);
@@ -21,4 +22,5 @@ const { Content } = await render(note);
   tags={note.data.tags}
 >
   <Content />
+  <RelatedProjects collection="research" id={note.id} />
 </ArticleLayout>

@@ -1,6 +1,6 @@
 ---
 name: deploy
-description: Release thegraph.es to production. Regenerates the CV PDF (public/cv.pdf) from src/data/cv.ts, commits it if it changed, checks formatting and the build, then creates and pushes the vX.Y.Z tag that triggers the GitHub Actions deploy. Use when the user asks to deploy, release, ship to production, or cut/push a version tag.
+description: Release thegraph.es to production. Regenerates the CV PDF (public/Manuel-Gijon-Agudo-CV.pdf) from src/data/cv.ts, commits it if it changed, checks formatting and the build, then creates and pushes the vX.Y.Z tag that triggers the GitHub Actions deploy. Use when the user asks to deploy, release, ship to production, or cut/push a version tag.
 argument-hint: '[vX.Y.Z]'
 disable-model-invocation: true
 ---
@@ -38,8 +38,9 @@ Run from the repository root.
 ## 3. Regenerate the CV PDF
 
 - `npm run cv:pdf`
-- If `git status --porcelain public/cv.pdf` shows a change, commit only that file:
-  `git add public/cv.pdf && git commit -m "chore(cv): regenerate cv.pdf for <version>"`
+- The PDF is `public/<cvPdfFileName>` (`cvPdfFileName` in `src/data/cv.ts`; currently
+  `Manuel-Gijon-Agudo-CV.pdf`). If `git status --porcelain public/` shows it changed, commit only
+  that file: `git add public/<file> && git commit -m "chore(cv): regenerate CV PDF for <version>"`
   (append the commit attribution lines from the session's instructions, if any).
 - If nothing changed, say so and continue. The PDF's creation date is pinned to the last commit that
   touched the CV sources, so an unchanged CV regenerates byte-identically.

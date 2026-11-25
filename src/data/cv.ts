@@ -45,6 +45,9 @@ export interface SkillGroup {
   items: string[];
 }
 
+/** File name of the generated CV PDF, served from the site root (see `npm run cv:pdf`). */
+export const cvPdfFileName = 'Manuel-Gijon-Agudo-CV.pdf';
+
 export const cvHeader = {
   name: 'Manuel Gijón',
   titles: 'Senior Software Engineer · ML Systems · Rust · Data Engineering',

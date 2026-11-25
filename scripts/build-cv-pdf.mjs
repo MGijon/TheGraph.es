@@ -1,4 +1,4 @@
-// Builds public/cv.pdf from cv/cv.typ using the data in src/data/cv.ts.
+// Builds public/<cvPdfFileName> from cv/cv.typ using the data in src/data/cv.ts.
 // Usage: npm run cv:pdf [-- <output>]   (requires the `typst` CLI: https://typst.app)
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -13,6 +13,7 @@ import {
   publications,
   teaching,
   skills,
+  cvPdfFileName,
 } from '../src/data/cv.ts';
 import { socialLinks } from '../src/data/social.ts';
 
@@ -38,7 +39,7 @@ const data = {
 };
 
 // Optional output path, e.g. `npm run cv:pdf -- /tmp/cv-{p}.png` to preview pages as images.
-const output = path.resolve(process.argv[2] ?? path.join(root, 'public', 'cv.pdf'));
+const output = path.resolve(process.argv[2] ?? path.join(root, 'public', cvPdfFileName));
 
 // Pin the PDF's creation date to the last commit touching the CV sources, so regenerating
 // an unchanged CV gives a byte-identical file (and no spurious diff before a deploy).

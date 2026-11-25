@@ -37,7 +37,7 @@ src/
 | `npm run astro check`  | Type-check the project                        |
 | `npm run format`       | Format the codebase with Prettier             |
 | `npm run format:check` | Check formatting without writing (used in CI) |
-| `npm run cv:pdf`       | Regenerate `public/cv.pdf` (needs `typst`)    |
+| `npm run cv:pdf`       | Regenerate the CV PDF (needs `typst`)         |
 
 ## Adding content
 
@@ -49,7 +49,8 @@ highlighted with Shiki.
 
 ## CV PDF
 
-`/cv.pdf` is generated with [Typst](https://typst.app) from the same data as
+The CV PDF (`/Manuel-Gijon-Agudo-CV.pdf`, named by `cvPdfFileName` in
+`src/data/cv.ts`) is generated with [Typst](https://typst.app) from the same data as
 the `/cv` page: `src/data/cv.ts` (plus links from `src/data/social.ts`) is
 passed to the template in `cv/cv.typ`. Run `npm run cv:pdf` to regenerate it;
 the file is committed, and the download button on `/cv` appears whenever it
@@ -70,7 +71,7 @@ no manual deploy step — the tag push _is_ the deploy.
      if it fails.
    - Merge the PR (or push directly to `master`).
 2. From an up-to-date `master`, regenerate the CV PDF with `npm run cv:pdf`
-   and commit `public/cv.pdf` if it changed, then tag the release:
+   and commit `public/Manuel-Gijon-Agudo-CV.pdf` if it changed, then tag the release:
    ```sh
    git checkout master
    git pull

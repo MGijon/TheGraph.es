@@ -37,6 +37,7 @@ src/
 | `npm run astro check`  | Type-check the project                        |
 | `npm run format`       | Format the codebase with Prettier             |
 | `npm run format:check` | Check formatting without writing (used in CI) |
+| `npm run cv:pdf`       | Regenerate `public/cv.pdf` (needs `typst`)    |
 
 ## Adding content
 
@@ -45,6 +46,15 @@ Drop a `.md` or `.mdx` file into `src/content/writing/`, `projects/`, or
 `src/content.config.ts` for the schema). Math is written with KaTeX
 (`$inline$` / `$$block$$` via `remark-math`), and fenced code blocks are
 highlighted with Shiki.
+
+## CV PDF
+
+`/cv.pdf` is generated with [Typst](https://typst.app) from the same data as
+the `/cv` page: `src/data/cv.ts` (plus links from `src/data/social.ts`) is
+passed to the template in `cv/cv.typ`. Run `npm run cv:pdf` to regenerate it;
+the file is committed, and the download button on `/cv` appears whenever it
+exists. Pass an output path to preview without touching it, e.g.
+`npm run cv:pdf -- /tmp/cv-{p}.png`.
 
 ## Deploying
 
@@ -59,7 +69,8 @@ no manual deploy step — the tag push _is_ the deploy.
      `npm run format:check` on the PR — fix formatting with `npm run format`
      if it fails.
    - Merge the PR (or push directly to `master`).
-2. From an up-to-date `master`, tag the release:
+2. From an up-to-date `master`, regenerate the CV PDF with `npm run cv:pdf`
+   and commit `public/cv.pdf` if it changed, then tag the release:
    ```sh
    git checkout master
    git pull

@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "cv:pdf": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/build-cv-pdf.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.1",

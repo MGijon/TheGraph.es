@@ -88,7 +88,7 @@ export const experience: ExperienceEntry[] = [
     role: 'Research Engineer',
     company: 'Barcelona Supercomputing Center',
     location: 'Barcelona',
-    period: 'June 2024 - October 2024',
+    period: 'June 2024 – October 2024',
     bullets: [
       'Developed software and data pipelines for training and evaluating LLMs and multimodal LLMs.',
       'Designed and implemented ETL infrastructure for processing multimodal datasets.',

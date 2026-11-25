@@ -1,3 +1,5 @@
+import { author } from './site.ts';
+
 export interface ExperienceEntry {
   role: string;
   company: string;
@@ -49,7 +51,7 @@ export interface SkillGroup {
 export const cvPdfFileName = 'Manuel-Gijon-Agudo-CV.pdf';
 
 export const cvHeader = {
-  name: 'Manuel Gijón',
+  name: author.name,
   titles: 'Senior Software Engineer · ML Systems · Rust · Data Engineering',
   location: 'Barcelona, Spain · Remote',
   keywords: ['Rust', 'Python', 'Data Engineering', 'ML Systems', 'Mathematics'],

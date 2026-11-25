@@ -43,7 +43,13 @@ const output = path.resolve(process.argv[2] ?? path.join(root, 'public', cvPdfFi
 
 // Pin the PDF's creation date to the last commit touching the CV sources, so regenerating
 // an unchanged CV gives a byte-identical file (and no spurious diff before a deploy).
-const sources = ['src/data/cv.ts', 'src/data/social.ts', 'cv/cv.typ', 'scripts/build-cv-pdf.mjs'];
+const sources = [
+  'src/data/cv.ts',
+  'src/data/site.ts',
+  'src/data/social.ts',
+  'cv/cv.typ',
+  'scripts/build-cv-pdf.mjs',
+];
 let timestamp = [];
 try {
   const ct = execFileSync('git', ['log', '-1', '--format=%ct', '--', ...sources], {

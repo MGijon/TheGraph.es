@@ -1,5 +1,6 @@
 ---
 import { socialLinks } from '../data/social';
+import { author } from '../data/site';
 
 const year = new Date().getFullYear();
 ---
@@ -8,7 +9,7 @@ const year = new Date().getFullYear();
   <div
     class="mx-auto flex max-w-3xl flex-col gap-2 px-4 py-8 text-sm text-ink/60 sm:flex-row sm:items-center sm:justify-between"
   >
-    <p>&copy; {year} Manuel Gijón. All rights reserved.</p>
+    <p>&copy; {year} {author.name}. All rights reserved.</p>
     <div class="flex flex-wrap gap-4">
       <a href="/rss.xml" class="hover:text-accent">RSS</a>
       {

@@ -3,20 +3,72 @@ import { SEO } from 'astro-seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { author, site } from '../data/site';
+import { socialLinks } from '../data/social';
+import { cvHeader, education } from '../data/cv';
 
 interface Props {
   title: string;
   description: string;
   image?: string;
   article?: boolean;
+  /** Publication date of an article page; adds an Article entry to the structured data. */
+  published?: Date;
 }
 
-const { title, description, image, article = false } = Astro.props;
+const { title, description, image, article = false, published } = Astro.props;
 
-const siteName = 'thegraph.es';
+const siteName = site.name;
 const pageTitle = title === siteName ? siteName : `${title} · ${siteName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const socialImage = image ? new URL(image, Astro.site).toString() : undefined;
+
+// schema.org structured data: who the site is about, the site itself, and (on article pages)
+// the article. Lets search engines connect this site, its posts and the linked profiles
+// (GitHub, LinkedIn, ORCID, ...) to one person.
+const personId = `${site.url}/#person`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: author.name,
+      url: site.url,
+      jobTitle: author.jobTitle,
+      homeLocation: { '@type': 'Place', name: author.location },
+      knowsAbout: cvHeader.keywords,
+      alumniOf: education.map((entry) => ({
+        '@type': 'CollegeOrUniversity',
+        name: entry.institution,
+      })),
+      sameAs: socialLinks.map((link) => link.href),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.url}/#website`,
+      name: site.name,
+      url: site.url,
+      description: site.description,
+      author: { '@id': personId },
+    },
+    ...(article && published
+      ? [
+          {
+            '@type': 'Article',
+            headline: title,
+            description,
+            url: canonical.toString(),
+            datePublished: published.toISOString(),
+            ...(socialImage ? { image: socialImage } : {}),
+            author: { '@id': personId },
+            publisher: { '@id': personId },
+            isPartOf: { '@id': `${site.url}/#website` },
+          },
+        ]
+      : []),
+  ],
+};
 ---
 
 <!doctype html>
@@ -25,6 +77,7 @@ const socialImage = image ? new URL(image, Astro.site).toString() : undefined;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="author" content={author.name} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title={siteName} href="/rss.xml" />
     <script is:inline>
@@ -51,6 +104,7 @@ const socialImage = image ? new URL(image, Astro.site).toString() : undefined;
         card: socialImage ? 'summary_large_image' : 'summary',
       }}
     />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />

@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getSpeakEntries, kindLabel } from '../lib/speak';
+import { author, site } from '../data/site';
 
 const writing = (await getCollection('writing', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -17,12 +18,9 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
   .slice(0, 4);
 ---
 
-<BaseLayout
-  title="thegraph.es"
-  description="Manuel Gijón's notes on data engineering, distributed systems, and research."
->
+<BaseLayout title="thegraph.es" description={site.description}>
   <section>
-    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Manuel Gijón Agudo</h1>
+    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">{author.name}</h1>
     <p class="mt-4 max-w-xl text-ink/70">
       I write about data engineering, distributed systems, and the occasional research rabbit hole.
       This is where the notes live.

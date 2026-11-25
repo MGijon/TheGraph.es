@@ -2,14 +2,15 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { getSpeakEntries, kindLabel } from '../lib/speak';
 
 const writing = (await getCollection('writing', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-const speak = (await getCollection('speak', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+const { upcoming: allUpcoming, past } = await getSpeakEntries();
+const upcoming = allUpcoming.slice(0, 3);
+const speak = past.slice(0, 3);
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -27,6 +28,40 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
       This is where the notes live.
     </p>
   </section>
+
+  {
+    upcoming.length > 0 && (
+      <section class="mt-16">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-xl font-semibold">Upcoming events</h2>
+          <a href="/speak" class="text-sm text-accent hover:underline">
+            All events &rarr;
+          </a>
+        </div>
+        <ul class="mt-6 divide-y divide-ink/10">
+          {upcoming.map((entry) => (
+            <li class="py-4">
+              <a href={`/speak/${entry.id}`} class="group flex flex-col gap-1">
+                <span class="font-medium group-hover:text-accent">{entry.data.title}</span>
+                <span class="text-sm text-ink/50">
+                  <time datetime={entry.data.date.toISOString()}>
+                    {entry.data.date.toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  {' · '}
+                  {kindLabel[entry.data.kind]} at {entry.data.event}
+                  {entry.data.location && ` · ${entry.data.location}`}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
 
   {
     writing.length > 0 && (

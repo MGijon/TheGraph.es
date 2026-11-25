@@ -1,33 +1,14 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSpeakEntries, kindLabel } from '../../lib/speak';
 
-const entries = await getCollection('speak', ({ data }) => !data.draft);
+const { upcoming, past } = await getSpeakEntries();
 
-// "Upcoming" is evaluated at build time; past entries move over on the next deploy.
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-
-const upcoming = entries
-  .filter((e) => e.data.date >= today)
-  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
-const past = entries
-  .filter((e) => e.data.date < today)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
+// "Upcoming events" is always shown (with an empty state); "Past events" only when there are any.
 const sections = [
-  { heading: 'Upcoming', items: upcoming },
-  { heading: 'Past', items: past },
-].filter((s) => s.items.length > 0);
-
-const kindLabel: Record<string, string> = {
-  talk: 'Talk',
-  workshop: 'Workshop',
-  panel: 'Panel',
-  podcast: 'Podcast',
-  interview: 'Interview',
-  other: 'Session',
-};
+  { heading: 'Upcoming events', items: upcoming, empty: 'No upcoming events right now.' },
+  { heading: 'Past events', items: past, empty: null },
+].filter((s) => s.items.length > 0 || s.empty);
 ---
 
 <BaseLayout title="Speak" description="Talks, workshops, and other public appearances.">
@@ -39,6 +20,9 @@ const kindLabel: Record<string, string> = {
     sections.map((section) => (
       <section class="mt-12">
         <h2 class="text-xl font-semibold">{section.heading}</h2>
+        {section.items.length === 0 && (
+          <p class="mt-4 text-sm text-ink/60">{section.empty}</p>
+        )}
         <ul class="mt-4 divide-y divide-ink/10">
           {section.items.map((entry) => (
             <li class="py-6">
@@ -73,5 +57,4 @@ const kindLabel: Record<string, string> = {
       </section>
     ))
   }
-  {entries.length === 0 && <p class="mt-10 text-sm text-ink/60">Nothing published yet.</p>}
 </BaseLayout>

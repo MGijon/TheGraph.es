@@ -3,7 +3,7 @@ import { SEO } from 'astro-seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import { author, site } from '../data/site';
+import { author, personId, site } from '../data/site';
 import { socialLinks } from '../data/social';
 import { cvHeader, education } from '../data/cv';
 
@@ -14,9 +14,18 @@ interface Props {
   article?: boolean;
   /** Publication date of an article page; adds an Article entry to the structured data. */
   published?: Date;
+  /** Extra schema.org entries for this page (e.g. an Event), added to the JSON-LD graph. */
+  structuredData?: Record<string, unknown>[];
 }
 
-const { title, description, image, article = false, published } = Astro.props;
+const {
+  title,
+  description,
+  image,
+  article = false,
+  published,
+  structuredData: extraStructuredData = [],
+} = Astro.props;
 
 const siteName = site.name;
 const pageTitle = title === siteName ? siteName : `${title} · ${siteName}`;
@@ -26,7 +35,6 @@ const socialImage = image ? new URL(image, Astro.site).toString() : undefined;
 // schema.org structured data: who the site is about, the site itself, and (on article pages)
 // the article. Lets search engines connect this site, its posts and the linked profiles
 // (GitHub, LinkedIn, ORCID, ...) to one person.
-const personId = `${site.url}/#person`;
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -67,6 +75,7 @@ const structuredData = {
           },
         ]
       : []),
+    ...extraStructuredData,
   ],
 };
 ---

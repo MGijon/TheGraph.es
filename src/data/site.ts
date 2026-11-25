@@ -12,3 +12,6 @@ export const site = {
   url: 'https://thegraph.es',
   description: `${author.name}'s notes on data engineering, distributed systems, and research.`,
 };
+
+/** schema.org @id of the author, for other structured data (articles, events) to reference. */
+export const personId = `${site.url}/#person`;

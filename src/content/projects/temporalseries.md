@@ -11,6 +11,8 @@ repoUrl: 'https://github.com/MGijon/TemporalSeries'
 liveUrl: 'https://docs.rs/temporalseries'
 related:
   - writing/building-a-time-series-engine-in-rust
+# Set to true to hide this project everywhere on the site (lists, pages, related links, sitemap).
+draft: false
 ---
 
 TemporalSeries is a Rust library for quantitative time-series analysis. It is published as the [`temporalseries`](https://docs.rs/temporalseries) crate under the MIT license.

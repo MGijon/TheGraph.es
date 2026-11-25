@@ -1,0 +1,51 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getSeriesPosts } from '../../../lib/series';
+
+export async function getStaticPaths() {
+  const allSeries = await getCollection('series');
+  return allSeries.map((series) => ({
+    params: { slug: series.id },
+    props: { series },
+  }));
+}
+
+const { series } = Astro.props;
+const { Content } = await render(series);
+const posts = await getSeriesPosts(series.id);
+---
+
+<BaseLayout title={series.data.title} description={series.data.description}>
+  <p class="text-sm text-ink/50">
+    <a href="/writing" class="hover:text-accent">Writing</a> &middot; Series
+  </p>
+  <h1 class="mt-2 text-3xl font-bold tracking-tight">{series.data.title}</h1>
+  <p class="mt-4 max-w-xl text-ink/70">{series.data.description}</p>
+  <div class="prose prose-neutral dark:prose-invert mt-6 max-w-none">
+    <Content />
+  </div>
+  <ol class="mt-10 divide-y divide-ink/10">
+    {
+      posts.map((post, i) => (
+        <li class="py-6">
+          <a href={`/writing/${post.id}`} class="group block">
+            <div class="flex flex-col gap-1">
+              <span class="text-sm text-ink/50">Part {i + 1}</span>
+              <h2 class="text-lg font-semibold group-hover:text-accent">{post.data.title}</h2>
+              <time datetime={post.data.date.toISOString()} class="text-sm text-ink/50">
+                {post.data.date.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </time>
+            </div>
+            <p class="mt-2 text-sm text-ink/70">{post.data.description}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+  {posts.length === 0 && <p class="mt-10 text-sm text-ink/60">No posts in this series yet.</p>}
+</BaseLayout>

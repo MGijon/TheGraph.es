@@ -1,5 +1,27 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+
+// Links to entries in other sections, as "<collection>/<id>", e.g.
+// "writing/building-a-time-series-engine-in-rust" or "projects/temporalseries".
+// Links show up on both pages, so each pair only needs to be declared once.
+const related = z
+  .array(
+    z
+      .string()
+      .regex(
+        /^(writing|research|speak|projects)\/.+$/,
+        'Use "<writing|research|speak|projects>/<id>"'
+      )
+  )
+  .default([]);
+
+const series = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/series' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+});
 
 const writing = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/writing' }),
@@ -8,36 +30,9 @@ const writing = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
     description: z.string(),
-    draft: z.boolean().default(false),
-  }),
-});
-
-const projects = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-    tags: z.array(z.string()).default([]),
-    description: z.string(),
-    category: z.enum(['engineering', 'venture']).default('engineering'),
-    repoUrl: z.string().url().optional(),
-    liveUrl: z.string().url().optional(),
-    // Related entries from other collections, as "<collection>/<id>",
-    // e.g. "writing/building-a-time-series-engine-in-rust" or "speak/my-talk".
-    related: z
-      .array(z.string().regex(/^(writing|research|speak)\/.+$/, 'Use "writing|research|speak/<id>"'))
-      .default([]),
-    draft: z.boolean().default(false),
-  }),
-});
-
-const research = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/research' }),
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-    tags: z.array(z.string()).default([]),
-    description: z.string(),
+    series: reference('series').optional(),
+    seriesOrder: z.number().int().positive().optional(),
+    related,
     draft: z.boolean().default(false),
   }),
 });
@@ -55,8 +50,36 @@ const speak = defineCollection({
     videoUrl: z.string().url().optional(),
     tags: z.array(z.string()).default([]),
     description: z.string(),
+    related,
     draft: z.boolean().default(false),
   }),
 });
 
-export const collections = { writing, speak, projects, research };
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    tags: z.array(z.string()).default([]),
+    description: z.string(),
+    category: z.enum(['engineering', 'venture']).default('engineering'),
+    repoUrl: z.string().url().optional(),
+    liveUrl: z.string().url().optional(),
+    related,
+    draft: z.boolean().default(false),
+  }),
+});
+
+const research = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/research' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    tags: z.array(z.string()).default([]),
+    description: z.string(),
+    related,
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { series, writing, speak, projects, research };

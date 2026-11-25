@@ -1,7 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
-import RelatedProjects from '../../components/RelatedProjects.astro';
+import RelatedEntries from '../../components/RelatedEntries.astro';
+import SeriesNav from '../../components/SeriesNav.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('writing', ({ data }) => !data.draft);
@@ -21,6 +22,7 @@ const { Content } = await render(post);
   date={post.data.date}
   tags={post.data.tags}
 >
+  {post.data.series && <SeriesNav seriesId={post.data.series.id} currentId={post.id} />}
   <Content />
-  <RelatedProjects collection="writing" id={post.id} />
+  <RelatedEntries collection="writing" id={post.id} />
 </ArticleLayout>

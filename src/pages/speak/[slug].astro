@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
-import RelatedProjects from '../../components/RelatedProjects.astro';
+import RelatedEntries from '../../components/RelatedEntries.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('speak', ({ data }) => !data.draft);
@@ -60,5 +60,5 @@ const links = [
     }
   </div>
   <Content />
-  <RelatedProjects collection="speak" id={entry.id} />
+  <RelatedEntries collection="speak" id={entry.id} />
 </ArticleLayout>

@@ -1,0 +1,43 @@
+---
+import { getRelated, type LinkableCollection } from '../lib/related';
+
+interface Props {
+  collection: LinkableCollection;
+  id: string;
+}
+
+const { collection, id } = Astro.props;
+const items = await getRelated(collection, id);
+---
+
+{
+  items.length > 0 && (
+    <section class="not-prose mt-16 border-t border-ink/10 pt-8">
+      <h2 class="text-xl font-semibold text-ink">Related</h2>
+      <ul class="mt-4 divide-y divide-ink/10">
+        {items.map((item) => (
+          <li class="py-4">
+            <a href={item.href} class="group flex flex-col gap-1">
+              <span class="font-medium text-ink group-hover:text-accent">{item.title}</span>
+              <span class="text-sm text-ink/50">
+                {item.meta}
+                {item.date && (
+                  <>
+                    {' · '}
+                    <time datetime={item.date.toISOString()}>
+                      {item.date.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </time>
+                  </>
+                )}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

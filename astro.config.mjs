@@ -20,6 +20,7 @@ export default defineConfig({
   redirects: {
     '/writing/building-a-time-series-engine-in-rust':
       '/writing/building-a-time-series-engine-in-rust-1',
+    '/writing/orchestration-without-the-bloat': '/writing/orchestration-without-the-bloat-1',
   },
 
   vite: {

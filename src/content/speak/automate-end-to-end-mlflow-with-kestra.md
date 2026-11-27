@@ -13,7 +13,7 @@ tags:
   - MLflow
   - Python
 related:
-  - writing/orchestration-without-the-bloat
+  - writing/orchestration-without-the-bloat-1
 description: 'A 75-minute hands-on workshop building an end-to-end machine learning pipeline with Kestra for orchestration and MLflow for experiment tracking, using a Kaggle competition as the use case.'
 ---
 

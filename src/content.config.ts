@@ -2,7 +2,7 @@ import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 // Links to entries in other sections, as "<collection>/<id>", e.g.
-// "writing/building-a-time-series-engine-in-rust" or "projects/temporalseries".
+// "writing/building-a-time-series-engine-in-rust-1" or "projects/temporalseries".
 // Links show up on both pages, so each pair only needs to be declared once.
 const related = z
   .array(

@@ -16,6 +16,12 @@ export default defineConfig({
 
   integrations: [react(), mdx(), sitemap()],
 
+  // Old URLs of renamed entries, so links already shared keep working.
+  redirects: {
+    '/writing/building-a-time-series-engine-in-rust':
+      '/writing/building-a-time-series-engine-in-rust-1',
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },

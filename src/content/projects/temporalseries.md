@@ -10,7 +10,7 @@ description: 'A high-performance Rust library for quantitative time-series analy
 repoUrl: 'https://github.com/MGijon/TemporalSeries'
 liveUrl: 'https://docs.rs/temporalseries'
 related:
-  - writing/building-a-time-series-engine-in-rust
+  - writing/building-a-time-series-engine-in-rust-1
 # Set to true to hide this project everywhere on the site (lists, pages, related links, sitemap).
 draft: false
 ---

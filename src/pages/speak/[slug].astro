@@ -1,0 +1,80 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import ExternalLinks from '../../components/ExternalLinks.astro';
+import RelatedEntries from '../../components/RelatedEntries.astro';
+import { personId, site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('speak', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { kind, event, location, eventUrl, slidesUrl, videoUrl, codeUrl, image } = entry.data;
+
+// schema.org Event for this appearance, with the author as performer. The session is
+// modelled as part of the wider event (superEvent), e.g. a workshop at a conference.
+const isOnline = location?.trim().toLowerCase() === 'online';
+const eventData = {
+  '@type': 'Event',
+  name: entry.data.title,
+  description: entry.data.description,
+  startDate: entry.data.date.toISOString().slice(0, 10),
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: isOnline
+    ? 'https://schema.org/OnlineEventAttendanceMode'
+    : 'https://schema.org/OfflineEventAttendanceMode',
+  location: isOnline
+    ? { '@type': 'VirtualLocation', url: eventUrl ?? `${site.url}/speak/${entry.id}` }
+    : location
+      ? { '@type': 'Place', name: location, address: location }
+      : undefined,
+  url: `${site.url}/speak/${entry.id}`,
+  ...(eventUrl ? { sameAs: eventUrl } : {}),
+  ...(image ? { image: new URL(image, site.url).toString() } : {}),
+  performer: { '@id': personId },
+  superEvent: { '@type': 'Event', name: event },
+  keywords: entry.data.tags.join(', ') || undefined,
+};
+
+const kindLabel: Record<string, string> = {
+  talk: 'Talk',
+  workshop: 'Workshop',
+  panel: 'Panel',
+  podcast: 'Podcast',
+  interview: 'Interview',
+  other: 'Session',
+};
+---
+
+<ArticleLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  date={entry.data.date}
+  tags={entry.data.tags}
+  tagBase="/speak"
+  image={entry.data.image}
+  structuredData={[eventData]}
+>
+  <div slot="meta" class="mt-3 text-sm text-ink/60">
+    <p>
+      {kindLabel[kind]} at <span class="font-medium text-ink/80">{event}</span>
+      {location && ` · ${location}`}
+    </p>
+    <ExternalLinks
+      links={[
+        { href: eventUrl, label: 'Event' },
+        { href: slidesUrl, label: 'Slides' },
+        { href: videoUrl, label: 'Video' },
+        { href: codeUrl, label: 'Code' },
+      ]}
+    />
+  </div>
+  <Content />
+  <RelatedEntries collection="speak" id={entry.id} />
+</ArticleLayout>

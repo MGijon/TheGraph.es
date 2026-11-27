@@ -1,0 +1,26 @@
+---
+// Row of outbound links shown under an entry's title (event, slides, video, code, …).
+// Entries without an href are skipped; nothing renders when none are left.
+interface Props {
+  links: { href?: string; label: string }[];
+}
+
+const links = Astro.props.links.filter((link) => link.href);
+---
+
+{
+  links.length > 0 && (
+    <div class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class="text-accent hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {link.label} &rarr;
+        </a>
+      ))}
+    </div>
+  )
+}

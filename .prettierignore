@@ -3,3 +3,6 @@ dist/
 node_modules/
 package-lock.json
 public/
+
+# Prettier only understands MDX 1 and corrupts MDX 2 syntax such as {/* comments */}.
+*.mdx

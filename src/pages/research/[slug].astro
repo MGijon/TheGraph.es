@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import ExternalLinks from '../../components/ExternalLinks.astro';
+import RelatedEntries from '../../components/RelatedEntries.astro';
 
 export async function getStaticPaths() {
   const notes = await getCollection('research', ({ data }) => !data.draft);
@@ -19,6 +21,9 @@ const { Content } = await render(note);
   description={note.data.description}
   date={note.data.date}
   tags={note.data.tags}
+  tagBase="/research"
 >
+  <ExternalLinks slot="meta" links={[{ href: note.data.codeUrl, label: 'Code' }]} />
   <Content />
+  <RelatedEntries collection="research" id={note.id} />
 </ArticleLayout>

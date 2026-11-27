@@ -2,27 +2,71 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { getSpeakEntries, kindLabel } from '../lib/speak';
+import { author, site } from '../data/site';
 
 const writing = (await getCollection('writing', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
+
+const { upcoming: allUpcoming, past } = await getSpeakEntries();
+const upcoming = allUpcoming.slice(0, 3);
+const speak = past.slice(0, 3);
 
 const projects = (await getCollection('projects', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 4);
 ---
 
-<BaseLayout
-  title="thegraph.es"
-  description="Manuel Gijón's notes on data engineering, distributed systems, and research."
->
+<BaseLayout title="thegraph.es" description={site.description}>
   <section>
-    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Manuel Gijón</h1>
+    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">{author.name}</h1>
     <p class="mt-4 max-w-xl text-ink/70">
       I write about data engineering, distributed systems, and the occasional research rabbit hole.
       This is where the notes live.
     </p>
   </section>
+
+  {
+    upcoming.length > 0 && (
+      <section class="mt-16">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-xl font-semibold">Upcoming events</h2>
+          <a href="/speak" class="text-sm text-accent hover:underline">
+            All events &rarr;
+          </a>
+        </div>
+        <ul class="mt-6 divide-y divide-ink/10">
+          {upcoming.map((entry) => (
+            <li class="py-4">
+              <a href={`/speak/${entry.id}`} class="group flex flex-col gap-1">
+                <span class="font-medium group-hover:text-accent">{entry.data.title}</span>
+                <span class="text-sm text-ink/50">
+                  <time datetime={entry.data.date.toISOString()}>
+                    {entry.data.date.toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  {' · '}
+                  {kindLabel[entry.data.kind]} at {entry.data.event}
+                  {entry.data.location && ` · ${entry.data.location}`}
+                </span>
+                {entry.data.tags.length > 0 && (
+                  <ul class="mt-2 flex flex-wrap gap-2">
+                    {entry.data.tags.map((tag) => (
+                      <li class="rounded-full bg-ink/5 px-2 py-0.5 text-xs text-ink/60">{tag}</li>
+                    ))}
+                  </ul>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
 
   {
     writing.length > 0 && (
@@ -36,18 +80,62 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft))
         <ul class="mt-6 divide-y divide-ink/10">
           {writing.map((post) => (
             <li class="py-4">
-              <a
-                href={`/writing/${post.id}`}
-                class="group flex items-baseline justify-between gap-4"
-              >
+              <a href={`/writing/${post.id}`} class="group flex flex-col gap-1">
                 <span class="font-medium group-hover:text-accent">{post.data.title}</span>
-                <time datetime={post.data.date.toISOString()} class="shrink-0 text-sm text-ink/50">
+                <time datetime={post.data.date.toISOString()} class="text-sm text-ink/50">
                   {post.data.date.toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
                   })}
                 </time>
+                {post.data.tags.length > 0 && (
+                  <ul class="mt-2 flex flex-wrap gap-2">
+                    {post.data.tags.map((tag) => (
+                      <li class="rounded-full bg-ink/5 px-2 py-0.5 text-xs text-ink/60">{tag}</li>
+                    ))}
+                  </ul>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    speak.length > 0 && (
+      <section class="mt-16">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-xl font-semibold">Speak</h2>
+          <a href="/speak" class="text-sm text-accent hover:underline">
+            View all &rarr;
+          </a>
+        </div>
+        <ul class="mt-6 divide-y divide-ink/10">
+          {speak.map((entry) => (
+            <li class="py-4">
+              <a href={`/speak/${entry.id}`} class="group flex flex-col gap-1">
+                <span class="font-medium group-hover:text-accent">{entry.data.title}</span>
+                <span class="text-sm text-ink/50">
+                  <time datetime={entry.data.date.toISOString()}>
+                    {entry.data.date.toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  {' · '}
+                  {entry.data.event}
+                </span>
+                {entry.data.tags.length > 0 && (
+                  <ul class="mt-2 flex flex-wrap gap-2">
+                    {entry.data.tags.map((tag) => (
+                      <li class="rounded-full bg-ink/5 px-2 py-0.5 text-xs text-ink/60">{tag}</li>
+                    ))}
+                  </ul>
+                )}
               </a>
             </li>
           ))}

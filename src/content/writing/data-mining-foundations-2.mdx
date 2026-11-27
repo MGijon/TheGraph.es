@@ -1,0 +1,102 @@
+---
+title: 'Data Mining Foundations: Comparing Classifiers'
+date: '2026-11-25'
+tags:
+  - Machine Learning
+  - Data Mining
+  - Statistics
+series: datamining
+seriesOrder: 2
+codeUrl: 'https://github.com/manuelgijon/data-mining-foundations'
+description: 'Part 2 of Data Mining Foundations: distinguishing between classifiers using statistical tests.'
+related:
+  - writing/statistical-testing-1
+---
+
+## Introduction
+
+We will divide this post into two parts: a theoretical introduction and a practical application. The first part will be thecnical and mathematical-heavy. Feel free to skip it if you are not interested in the details. 
+
+The second part will be a worked example, where we will apply the theory to a real dataset. **The code is linked on at the top of the page**. You can run it yourself to reproduce the results.
+
+{/*
+In the first part, we will discuss how to compare two classifiers using McNemar's test. In the second part, we will discuss how to compare multiple classifiers using Cochran's Q test.
+*/}
+
+
+## Comparing classifiers: the statistical perspective
+
+When we compare two classifiers, we are usually interested in their performance on a test set. The most common metric is accuracy, but it is not enough to tell us whether the difference between two classifiers is statistically significant or just due to random chance.
+
+### The hypotheses
+
+If both classifiers have the same error rate, a disagreement is equally likely to go either way:
+
+$$
+H_0 : p_b = p_c \qquad \text{vs.} \qquad H_1 : p_b \neq p_c
+$$
+
+## The McNemar's statistical test
+
+Suppose we have two classifiers, $A$ and $B$, evaluated on the **same** test set of $n$ examples.
+Accuracy alone can't tell us whether the difference between them is real or just noise. Because both
+models see the same examples, the observations are _paired_, and McNemar's test is the natural tool.
+
+### The contingency table
+
+For every test example we record whether each classifier got it right:
+
+|                 | $B$ correct | $B$ wrong |
+| --------------- | ----------- | --------- |
+| **$A$ correct** | $a$         | $b$       |
+| **$A$ wrong**   | $c$         | $d$       |
+
+with $a + b + c + d = n$. The cells $a$ and $d$ are examples where both models agree, so they say nothing
+about which one is better. Only the _discordant_ cells $b$ and $c$ carry information.
+
+
+
+### The statistic
+
+Under $H_0$, and when $b + c$ is not too small, the statistic
+
+$$
+\chi^2 = \frac{(b - c)^2}{b + c}
+$$
+
+follows approximately a $\chi^2$ distribution with $1$ degree of freedom. A common refinement is
+Edwards' continuity correction:
+
+$$
+\chi^2_{\text{cc}} = \frac{\left(\lvert b - c \rvert - 1\right)^2}{b + c}
+$$
+
+When $b + c < 25$, it is safer to use the exact test: under $H_0$, $b \sim \operatorname{Binomial}(b + c, \tfrac{1}{2})$, so
+
+$$
+p = 2 \sum_{k=0}^{\min(b,\,c)} \binom{b + c}{k} \left(\frac{1}{2}\right)^{b + c}.
+$$
+
+## The Cochran's Q statistical test
+
+
+
+---
+
+### A worked example. Applying McNemar's test to two classifiers
+
+On a test set of $n = 1000$ examples we observe $b = 40$ (only $A$ is right) and $c = 18$ (only $B$ is right):
+
+$$
+\begin{aligned}
+\chi^2_{\text{cc}} &= \frac{\left(\lvert 40 - 18 \rvert - 1\right)^2}{40 + 18} \\
+                   &= \frac{21^2}{58} \\
+                   &\approx 7.60
+\end{aligned}
+$$
+
+The critical value at $\alpha = 0.05$ is $\chi^2_{1,\,0.95} \approx 3.84$. Since $7.60 > 3.84$
+($p \approx 0.006$), we reject $H_0$: the difference between the two classifiers is statistically significant.
+
+
+For a deeper look at hypothesis tests, see [Statistical testing](/writing/statistical-testing-1).

@@ -1,3 +1,5 @@
+import { author } from './site.ts';
+
 export interface ExperienceEntry {
   role: string;
   company: string;
@@ -45,8 +47,11 @@ export interface SkillGroup {
   items: string[];
 }
 
+/** File name of the generated CV PDF, served from the site root (see `npm run cv:pdf`). */
+export const cvPdfFileName = 'Manuel-Gijon-Agudo-CV.pdf';
+
 export const cvHeader = {
-  name: 'Manuel Gijón',
+  name: author.name,
   titles: 'Senior Software Engineer · ML Systems · Rust · Data Engineering',
   location: 'Barcelona, Spain · Remote',
   keywords: ['Rust', 'Python', 'Data Engineering', 'ML Systems', 'Mathematics'],
@@ -88,7 +93,7 @@ export const experience: ExperienceEntry[] = [
     role: 'Research Engineer',
     company: 'Barcelona Supercomputing Center',
     location: 'Barcelona',
-    period: 'June 2024 - October 2024',
+    period: 'June 2024 – October 2024',
     bullets: [
       'Developed software and data pipelines for training and evaluating LLMs and multimodal LLMs.',
       'Designed and implemented ETL infrastructure for processing multimodal datasets.',

@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
+import { site } from '../data/site';
 
 export async function GET(context: APIContext) {
   const posts = (await getCollection('writing', ({ data }) => !data.draft)).sort(
@@ -9,7 +10,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'thegraph.es',
-    description: "Manuel Gijón's notes on data engineering, distributed systems, and research.",
+    description: site.description,
     site: context.site ?? 'https://thegraph.es',
     items: posts.map((post) => ({
       title: post.data.title,

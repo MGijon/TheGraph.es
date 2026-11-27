@@ -8,6 +8,7 @@ location: 'City, Country' # or 'Online'
 eventUrl: 'https://example.com/event'
 # slidesUrl: 'https://example.com/slides'
 # videoUrl: 'https://example.com/video'
+# codeUrl: 'https://github.com/user/repo'
 tags:
   - Data Engineering
 description: 'One or two sentences about what the session covers.'

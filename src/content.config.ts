@@ -15,6 +15,9 @@ const related = z
   )
   .default([]);
 
+// Link to the source code behind an entry (repository, notebook, gist…), shown as "Code →".
+const codeUrl = z.string().url().optional();
+
 const series = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/series' }),
   schema: z.object({
@@ -32,6 +35,7 @@ const writing = defineCollection({
     description: z.string(),
     series: reference('series').optional(),
     seriesOrder: z.number().int().positive().optional(),
+    codeUrl,
     related,
     draft: z.boolean().default(false),
   }),
@@ -48,6 +52,7 @@ const speak = defineCollection({
     eventUrl: z.string().url().optional(),
     slidesUrl: z.string().url().optional(),
     videoUrl: z.string().url().optional(),
+    codeUrl,
     // Path under /public, e.g. "/images/<slug>/photo.webp". Used as the social preview image.
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
@@ -79,6 +84,7 @@ const research = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
     description: z.string(),
+    codeUrl,
     related,
     draft: z.boolean().default(false),
   }),
